@@ -1,6 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import { Container, Typography, Box, Button, Stack } from '@mui/material';
+import { Container, Typography, Box, Stack } from '@mui/material';
 import Header from '../src/Components/Header';
 import StakingCard from '../src/Components/StakingCard';
 import theme from '../src/theme';
@@ -14,44 +14,6 @@ const Staking: NextPage = () => {
       <Container
         maxWidth='lg'
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Box
-          sx={{
-            my: 5,
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Box margin={'0 1.5em'}>
-            <Button>
-              <Typography
-                variant='h4'
-                gutterBottom
-                sx={{ color: 'gray', fontWeight: 'bold' }}>
-                LEARN
-              </Typography>
-            </Button>
-          </Box>
-          <Box
-            sx={{
-              background: 'black',
-              height: '3.5em',
-              width: '2px',
-              marginBottom: '0.70em',
-            }}
-          />
-          <Box margin={'0 1.5em'}>
-            <Button variant='text'>
-              <Typography
-                variant='h4'
-                component='h1'
-                gutterBottom
-                sx={{ color: theme.palette.text.primary, fontWeight: 'bold' }}>
-                STAKE
-              </Typography>
-            </Button>
-          </Box>
-        </Box>
         <StakingCard />
         <Stack
           mt={2}

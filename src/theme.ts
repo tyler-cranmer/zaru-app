@@ -24,7 +24,14 @@ const theme = createTheme({
       secondary: '#FFFFFF', // pure white
     },
     grey: {
-      500: '#6B7280', // lightish gray
+      100: "#f2f2f2",
+      200: "#e5e5e5",
+      300: "#3d8d8d8",
+      400: "#cccccc",
+      500: "#bfbfbf",
+      600: "#b2b2b2",
+      700: "#a6a6a6",
+      800: '#6B7280', // lightish gray
     },
   },
 
