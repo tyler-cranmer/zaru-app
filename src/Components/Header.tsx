@@ -13,21 +13,13 @@ import theme from '../theme';
 import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import CustomMenu from './CustomMenu';
 
-const options = [
-  'None',
-  'option2',
-  'option3',
-
-];
-
-const ITEM_HEIGHT = 48;
 
 function Header() {
   return (
     <>
       <AppBar
         position='static'
-        sx={{ background: theme.palette.primary.light }}>
+        sx={{ background: theme.palette.primary.light, boxSizing: "None" }}>
         <Toolbar sx={{justifyContent: 'space-between', margin: '0 10em'}} >
             <Link href='/' sx={{ textDecoration: 'none' }}>
               <IconButton
@@ -39,7 +31,7 @@ function Header() {
                 <Box
                   sx={{
                     display: { md: 'inline', xs: 'none' },
-                    paddingLeft: '.5rem',
+                    paddingLeft: '.5em',
                   }}>
                   <Typography
                     variant='h6'
