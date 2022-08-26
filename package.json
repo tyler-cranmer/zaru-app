@@ -16,6 +16,7 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@svgr/webpack": "^6.3.1",
     "@typechain/ethers-v5": "^10.1.0",
     "@types/dotenv": "^8.2.0",
     "@usedapp/core": "^1.1.5",

@@ -9,14 +9,15 @@ import {
   Button,
   Menu,
   MenuItem,
-  Alert
+  Alert,
+  SvgIcon
 } from '@mui/material';
 import theme from '../theme';
 import RiceBowlIcon from '@mui/icons-material/RiceBowl';
-import CustomMenu from '../components/CustomMenu';
 import ConnectWallet from './ConnectWallet';
 import { useEthers, useNotifications } from '@usedapp/core';
-import { MenuOpen } from '@mui/icons-material';
+import Image from 'next/image';
+
 
 // Takes a long hash string and truncates it.
 function truncateHash(hash: string, length = 38): string {
@@ -54,24 +55,32 @@ function Header() {
           boxShadow: '0px 0px 0px 0px',
           borderBottom: '1px solid #e5e5e5',
         }}>
-        <Toolbar sx={{ justifyContent: 'space-between', margin: '0 10em' }}>
+        <Toolbar sx={{ justifyContent: 'space-between'}}>
           <Link href='/' sx={{ textDecoration: 'none' }}>
             <IconButton
               size='large'
               edge='start'
               aria-label='logo'
+              disableRipple
               sx={{ color: theme.palette.primary.main }}>
-              <RiceBowlIcon />
               <Box
                 sx={{
-                  display: { md: 'inline', xs: 'none' },
+                  display: { md: 'flex', xs: 'none' },
                   paddingLeft: '.5em',
                 }}>
+                <Image
+                  alt='logo'
+                  src='/images/Zaru-bowl-removebg.svg'
+                  width={45}
+                  height={45}
+                />
                 <Typography
                   variant='h6'
                   sx={{
                     flexGrow: 1,
                     color: theme.palette.primary.main,
+                    alignSelf: 'center',
+                    marginTop: '.25em'
                   }}>
                   Zaru Finance
                 </Typography>
@@ -103,8 +112,6 @@ function Header() {
             ) : (
               <ConnectWallet />
             )}
-
-            <CustomMenu />
           </Box>
         </Toolbar>
       </AppBar>

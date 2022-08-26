@@ -3,8 +3,8 @@ import { Box, Button, Modal, Typography, IconButton } from '@mui/material';
 import { useEthers } from '@usedapp/core';
 import CloseIcon from '@mui/icons-material/Close';
 import { walletlink } from '../util/connectors';
-
-
+import Image from 'next/image';
+import theme from '../theme';
 function ConnectWallet(): JSX.Element {
   const { activateBrowserWallet, activate } = useEthers();
 
@@ -74,6 +74,14 @@ function ConnectWallet(): JSX.Element {
               }}
               variant='outlined'
               size='large'
+              endIcon={
+                <Image
+                  src='/images/walletIcons/metamask.svg'
+                  alt='metamask'
+                  height={25}
+                  width={25}
+                />
+              }
               sx={{
                 justifyContent: 'space-between',
                 width: '100%',
@@ -84,7 +92,15 @@ function ConnectWallet(): JSX.Element {
             <Button
               variant='outlined'
               size='large'
-              sx={{ justifyContent: 'space-between', width: '100%', mb: 2 }}>
+              sx={{ justifyContent: 'space-between', width: '100%', mb: 2 }}
+              endIcon={
+                <Image
+                  src='/images/walletIcons/wallet-connect.svg'
+                  alt='metamask'
+                  height={25}
+                  width={25}
+                />
+              }>
               Wallet Connect
             </Button>
             <Button
@@ -93,7 +109,15 @@ function ConnectWallet(): JSX.Element {
               }}
               variant='outlined'
               size='large'
-              sx={{ justifyContent: 'space-between', width: '100%' }}>
+              sx={{ justifyContent: 'space-between', width: '100%' }}
+              endIcon={
+                <Image
+                  src='/images/walletIcons/coinbase-wallet.svg'
+                  alt='metamask'
+                  height={25}
+                  width={25}
+                />
+              }>
               Coinbase Wallet
             </Button>
           </Box>
