@@ -11,8 +11,8 @@ import {
 } from '@mui/material';
 import theme from '../theme';
 import RiceBowlIcon from '@mui/icons-material/RiceBowl';
-import CustomMenu from './CustomMenu';
-
+import CustomMenu from '../components/CustomMenu';
+import ConnectWallet from './ConnectWallet';
 
 function Header() {
   const [open, isOpen] = useState(false)
@@ -51,9 +51,10 @@ function Header() {
             </IconButton>
           </Link>
           <Box display={'inherit'}>
-            <Button variant='contained' sx={{ borderRadius: '10px' }}>
+            {/* <Button variant='contained' sx={{ borderRadius: '10px' }}>
               Connect Wallet
-            </Button>
+            </Button> */}
+            <ConnectWallet/>
             <CustomMenu />
           </Box>
         </Toolbar>

@@ -1,8 +1,7 @@
 import React from 'react';
 import type { NextPage } from 'next';
 import { Container, Typography, Box, Stack } from '@mui/material';
-import Header from '../src/Components/Header';
-import StakingCard from '../src/Components/StakingCard';
+import StakingCard from '../src/components/StakingCard';
 import theme from '../src/theme';
 
 
@@ -10,7 +9,6 @@ import theme from '../src/theme';
 const Staking: NextPage = () => {
   return (
     <>
-      <Header />
       <Container
         maxWidth='lg'
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

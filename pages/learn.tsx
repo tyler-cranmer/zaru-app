@@ -1,13 +1,13 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import Header from '../src/Components/Header';
+
 import { Container, Typography, Box, Stack, Button } from '@mui/material';
 import theme from '../src/theme';
 
 const Learn: NextPage = () => {
   return (
     <>
-      <Header />
+
       <Container
         maxWidth='md'
         sx={{
