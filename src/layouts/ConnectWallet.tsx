@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Box, Button, Modal, Typography, IconButton } from '@mui/material';
 import { useEthers } from '@usedapp/core';
 import CloseIcon from '@mui/icons-material/Close';
+import { walletlink } from '../util/connectors';
+
 
 function ConnectWallet(): JSX.Element {
-  const { activateBrowserWallet, account, deactivate } = useEthers();
+  const { activateBrowserWallet, activate } = useEthers();
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -58,12 +60,18 @@ function ConnectWallet(): JSX.Element {
               sx={{ fontWeight: 500 }}>
               Connect to a wallet
             </Typography>
-            <IconButton aria-label='close' color='primary' onClick={handleClose}>
+            <IconButton
+              aria-label='close'
+              color='primary'
+              onClick={handleClose}>
               <CloseIcon />
             </IconButton>
           </Box>
           <Box>
             <Button
+              onClick={() => {
+                activateBrowserWallet();
+              }}
               variant='outlined'
               size='large'
               sx={{
@@ -80,6 +88,9 @@ function ConnectWallet(): JSX.Element {
               Wallet Connect
             </Button>
             <Button
+              onClick={() => {
+                activate(walletlink);
+              }}
               variant='outlined'
               size='large'
               sx={{ justifyContent: 'space-between', width: '100%' }}>

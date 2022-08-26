@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -7,15 +7,43 @@ import {
   Typography,
   IconButton,
   Button,
-
+  Menu,
+  MenuItem,
+  Alert
 } from '@mui/material';
 import theme from '../theme';
 import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import CustomMenu from '../components/CustomMenu';
 import ConnectWallet from './ConnectWallet';
+import { useEthers, useNotifications } from '@usedapp/core';
+import { MenuOpen } from '@mui/icons-material';
+
+// Takes a long hash string and truncates it.
+function truncateHash(hash: string, length = 38): string {
+  return hash.replace(hash.substring(6, length), '...')
+}
 
 function Header() {
   const [open, isOpen] = useState(false)
+  const { account, deactivate } = useEthers();
+  const { notifications } = useNotifications();
+  const isConnected = account !== undefined;
+
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const menuOpen = Boolean(anchorEl);
+
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  }
+
+  const handleDeactivate = () => {
+    deactivate();
+    setAnchorEl(null);
+  }
 
   return (
     <>
@@ -51,10 +79,31 @@ function Header() {
             </IconButton>
           </Link>
           <Box display={'inherit'}>
-            {/* <Button variant='contained' sx={{ borderRadius: '10px' }}>
-              Connect Wallet
-            </Button> */}
-            <ConnectWallet/>
+            {isConnected ? (
+              <div>
+                <Button
+                  variant='contained'
+                  aria-controls={menuOpen ? 'basic-menu' : undefined}
+                  aria-haspopup='true'
+                  aria-expanded={menuOpen ? 'true' : undefined}
+                  onClick={handleClick}>
+                  {truncateHash(account)}
+                </Button>
+                <Menu
+                  id='basic-menu'
+                  anchorEl={anchorEl}
+                  open={menuOpen}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                  }}>
+                  <MenuItem onClick={handleDeactivate}>Disconnect</MenuItem>
+                </Menu>
+              </div>
+            ) : (
+              <ConnectWallet />
+            )}
+
             <CustomMenu />
           </Box>
         </Toolbar>

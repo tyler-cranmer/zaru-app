@@ -8,32 +8,38 @@ import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 import Layout from '../src/layouts/Layout';
 
-import { Mainnet, DAppProvider, useEtherBalance, useEthers, Config,  ChainId, Optimism, OptimismGoerli, Localhost, Hardhat } from '@usedapp/core';
-
+import {
+  Mainnet,
+  DAppProvider,
+  useEtherBalance,
+  useEthers,
+  Config,
+  ChainId,
+  Optimism,
+  OptimismGoerli,
+  Localhost,
+  Hardhat,
+} from '@usedapp/core';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
+
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-
 const config: Config = {
   readOnlyUrls: {
-    [ChainId.Optimism]: 'Alchemy RPC',
-    [ChainId.Hardhat]: 'http://localhost:8545',
-    [ChainId.Localhost]: 'http://localhost:8545',
+    [ChainId.OptimismGoerli]: 'https://opt-goerli.g.alchemy.com/v2/pCsL-C-dpHI7f-XuBOkzpDILvcjr84WN',
   },
   networks: [
-    Localhost,
-    Hardhat,
     OptimismGoerli,
-    Optimism
-
   ],
-  autoConnect: true,
-
+  notifications: {
+    expirationPeriod: 1000,
+    checkInterval: 1000,
+  },
 };
 
 export default function MyApp(props: MyAppProps) {
