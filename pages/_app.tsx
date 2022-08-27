@@ -9,16 +9,12 @@ import createEmotionCache from '../src/createEmotionCache';
 import Layout from '../src/layouts/Layout';
 
 import {
-  Mainnet,
   DAppProvider,
-  useEtherBalance,
-  useEthers,
   Config,
   ChainId,
-  Optimism,
   OptimismGoerli,
-  Localhost,
-  Hardhat,
+  Optimism
+
 } from '@usedapp/core';
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -32,11 +28,12 @@ interface MyAppProps extends AppProps {
 const config: Config = {
   readOnlyChainId: ChainId.OptimismGoerli,
   readOnlyUrls: {
-    [ChainId.OptimismGoerli]: 'https://opt-goerli.g.alchemy.com/v2/pCsL-C-dpHI7f-XuBOkzpDILvcjr84WN',
+    [ChainId.OptimismGoerli]:
+      'https://opt-goerli.g.alchemy.com/v2/pCsL-C-dpHI7f-XuBOkzpDILvcjr84WN',
+    // [ChainId.Optimism]:
+    //   'https://opt-mainnet.g.alchemy.com/v2/WuZmaEQbN8Rhk-q74-A-MdUQzc605Btc',
   },
-  networks: [
-    OptimismGoerli,
-  ],
+  networks: [OptimismGoerli],
   notifications: {
     expirationPeriod: 1000,
     checkInterval: 1000,
