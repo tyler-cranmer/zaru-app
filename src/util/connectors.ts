@@ -10,7 +10,7 @@ const NETWORK_CONNECTIONS = {
   // [ChainId.Localhost]: 'http://127.0.0.1:8545',
 };
 const RPC_URLS: { [chainId: number]: string } = {
-  10: 'need to fill',
+  10: 'https://opt-mainnet.g.alchemy.com/v2/WuZmaEQbN8Rhk-q74-A-MdUQzc605Btc',
   420: 'https://opt-goerli.g.alchemy.com/v2/pCsL-C-dpHI7f-XuBOkzpDILvcjr84WN',
 };
 

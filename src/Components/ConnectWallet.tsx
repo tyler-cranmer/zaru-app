@@ -1,17 +1,34 @@
-import React, { useState } from 'react';
-import { Box, Button, Modal, Typography, IconButton } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { Box, Button, Modal, Typography, IconButton, Alert } from '@mui/material';
 import { useEthers } from '@usedapp/core';
 import CloseIcon from '@mui/icons-material/Close';
-import { walletlink } from '../util/connectors';
+import { walletlink, walletconnect } from '../util/connectors';
 import Image from 'next/image';
 
 function ConnectWallet(): JSX.Element {
-  const { activateBrowserWallet, activate } = useEthers();
+  const { activateBrowserWallet, activate, account, error } = useEthers();
 
   const [open, setOpen] = useState(false);
+  const [activateError, setActivateError] = useState('');
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  useEffect(() => {
+    if (error && account) {
+      setActivateError(error.message)
+      return
+    }
+    setActivateError('')
+
+  }, [error, account])
+  
+  function Alerting(): JSX.Element | null{
+    if (activateError != '') {
+      return <Alert severity='error'>{activateError}</Alert>;
+    } else {
+      return null
+    }
+  }
   const style = {
     position: 'absolute' as 'absolute',
     top: '20%',
@@ -28,10 +45,14 @@ function ConnectWallet(): JSX.Element {
     pb: 3,
     pl: 2,
   };
-
+  console.log("activateError:", activateError)
+  console.log("error: ", error)
   return (
     <>
-      <Box>
+      
+      <Box display={'flex'}>
+        
+        <Alerting/>
         <Button
           onClick={handleOpen}
           variant='contained'
@@ -90,6 +111,9 @@ function ConnectWallet(): JSX.Element {
               MetaMask
             </Button>
             <Button
+              onClick={() => {
+                activate(walletconnect);
+              }}
               variant='outlined'
               size='large'
               sx={{ justifyContent: 'space-between', width: '100%', mb: 2 }}
