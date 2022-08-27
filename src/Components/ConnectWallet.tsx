@@ -24,11 +24,29 @@ function ConnectWallet(): JSX.Element {
   
   function Alerting(): JSX.Element | null{
     if (activateError != '') {
-      return <Alert severity='error'>{activateError}</Alert>;
+      return <Alert sx={{ marginTop: ".5em"}} severity='error'>{activateError}</Alert>;
     } else {
       return null
     }
   }
+
+  const ConnectWalletLink = async () => {
+    try {
+      await activate(walletlink)
+    } catch (error: any) {
+      setActivateError(error.message)
+    }
+  }
+
+  const ConnectWalletConnect = async () => {
+    try {
+      await activate(walletconnect)
+    } catch (error: any) {
+      setActivateError(error.message)
+    }
+  }
+
+
   const style = {
     position: 'absolute' as 'absolute',
     top: '20%',
@@ -45,14 +63,11 @@ function ConnectWallet(): JSX.Element {
     pb: 3,
     pl: 2,
   };
-  console.log("activateError:", activateError)
-  console.log("error: ", error)
+
   return (
     <>
-      
       <Box display={'flex'}>
-        
-        <Alerting/>
+        <Alerting />
         <Button
           onClick={handleOpen}
           variant='contained'
@@ -90,9 +105,7 @@ function ConnectWallet(): JSX.Element {
           </Box>
           <Box>
             <Button
-              onClick={() => {
-                activateBrowserWallet();
-              }}
+              onClick={ () => {activateBrowserWallet()}}
               variant='outlined'
               size='large'
               endIcon={
@@ -111,9 +124,7 @@ function ConnectWallet(): JSX.Element {
               MetaMask
             </Button>
             <Button
-              onClick={() => {
-                activate(walletconnect);
-              }}
+              onClick={ConnectWalletLink}
               variant='outlined'
               size='large'
               sx={{ justifyContent: 'space-between', width: '100%', mb: 2 }}
@@ -128,9 +139,7 @@ function ConnectWallet(): JSX.Element {
               Wallet Connect
             </Button>
             <Button
-              onClick={() => {
-                activate(walletlink);
-              }}
+              onClick={ConnectWalletConnect}
               variant='outlined'
               size='large'
               sx={{ justifyContent: 'space-between', width: '100%' }}
