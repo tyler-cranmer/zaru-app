@@ -30,6 +30,7 @@ interface MyAppProps extends AppProps {
 }
 
 const config: Config = {
+  readOnlyChainId: ChainId.OptimismGoerli,
   readOnlyUrls: {
     [ChainId.OptimismGoerli]: 'https://opt-goerli.g.alchemy.com/v2/pCsL-C-dpHI7f-XuBOkzpDILvcjr84WN',
   },
