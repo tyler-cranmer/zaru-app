@@ -1,19 +1,14 @@
 import { useEthers, useCall } from '@usedapp/core';
-import { BigNumber, utils, constants } from 'ethers';
 import StakingContract from '../../abis/staking_contract_test.json';
-import networkMapping from '../../abis/map.json';
+import { utils, constants } from 'ethers';
 import { Contract } from '@ethersproject/contracts';
-/**
- * Get the staking balance of a user in our staking contract
- * @param address - The contract address of the token
- */
+import networkMapping from '../../abis/map.json';
 
-export const useBalanceOf = (accountAddress: string | undefined): BigNumber | undefined => {
+export const useSimpleFunction = (functionName: string) => {
   const { chainId } = useEthers();
-  const { abi, address } = StakingContract;
-
-  const stakingContractAddress = address
-    ? networkMapping[String(chainId)]['Farm'][0]
+    const { abi } = StakingContract;
+  const stakingContractAddress = chainId
+    ? networkMapping[String(chainId)]["Farm"][0]
     : constants.AddressZero;
   const stakingContractInterface = new utils.Interface(abi);
   const stakingContract = new Contract(
@@ -25,13 +20,15 @@ export const useBalanceOf = (accountAddress: string | undefined): BigNumber | un
     useCall(
       stakingContractAddress && {
         contract: stakingContract,
-        method: 'balanceOf',
-        args: [accountAddress],
+        method: functionName,
+        args: [],
       }
     ) ?? {};
+
   if (error) {
-    console.error(error.message);
+    console.error("error: ", error.message);
     return undefined;
   }
+  console.log('value: ', value);
   return value?.[0];
 };

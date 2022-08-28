@@ -45,6 +45,7 @@ export const StakingCard = () => {
     }
   };
 
+  /*
   const stakeTokenAddress: string =
     '0x068F465A140131f6996Bbc5c5B7435A1a52c7DA2'; //NEED TO CHANGE FROM HARD CODEING
   const { stakeTokens, stakeTokensState } = useStakeTokens(stakeTokenAddress);
@@ -53,7 +54,7 @@ export const StakingCard = () => {
     const amountAsWei = utils.parseEther(stakeAmount.toString());
     return stakeTokens(amountAsWei.toString());
   };
-
+*/
   return (
     <Card
       sx={{
@@ -107,7 +108,7 @@ export const StakingCard = () => {
             </Button>
           </Box>
 
-          <form noValidate autoComplete='off' onSubmit={handleSubmit}>
+          <form noValidate autoComplete='off' >
             <Box sx={{ display: 'flex' }}>
               <Box>
                 <CustomTextField
@@ -121,8 +122,8 @@ export const StakingCard = () => {
               </Box>
 
               <Button
-                // onClick={() => console.log('you clicked me')}
-                onClick={handleStakeSubmit}
+                onClick={() => console.log('you clicked me')}
+                
                 type='submit'
                 variant='contained'
                 fullWidth
