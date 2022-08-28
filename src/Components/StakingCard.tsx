@@ -6,14 +6,12 @@ import {
   Box,
   Button,
   Typography,
-  TextField,
   styled,
-  TextFieldProps,
-  OutlinedInputProps,
 } from '@mui/material';
 import theme from '../theme';
 import { useStakeTokens } from '../hooks';
-import { utils } from "ethers";
+import { utils } from 'ethers';
+import { CustomTextField } from './minorComponents/CustomTextField';
 
 const StyledFields = styled(Box)({
   backgroundColor: '#F3F8FC',
@@ -25,53 +23,15 @@ const StyledFields = styled(Box)({
   padding: '8px 12px 8px 12px',
 });
 
-const CustomTextField = styled((props: TextFieldProps) => (
-  <TextField
-    InputProps={{ disableUnderline: true } as Partial<OutlinedInputProps>}
-    {...props}
-  />
-))(({ theme }) => ({
-  label: {
-    color: theme.palette.primary.main,
-  },
-  '& .MuiFilledInput-root': {
-    overflow: 'hidden',
-    borderColor: 'red',
-    borderRadius: 10,
-    border: '1px solid transparent',
-    backgroundColor: 'white',
-    color: 'gray',
-    fontWeight: 'bold',
-    width: '23em',
-    marginRight: '1em',
-    transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow',
-    ]),
-    '&:hover': {
-      backgroundColor: 'white',
-    },
-    '&.Mui-focused': {
-      backgroundColor: 'white',
-      borderColor: 'transparent',
-      color: 'black',
-    },
-    '& input:invalid + fieldset': {
-      borderColor: 'red',
-      borderWidth: 2,
-    },
-  },
-}));
+
 
 export const StakingCard = () => {
-
   const [stake, setStake] = useState('');
   const [stakeError, setStakeError] = useState(false);
-   const [stakeAmount, setStakeAmount] = useState<
-     number | string | Array<number | string>
-     >(0);
-  
+  const [stakeAmount, setStakeAmount] = useState<
+    number | string | Array<number | string>
+  >(0);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStakeError(false);
@@ -91,8 +51,8 @@ export const StakingCard = () => {
 
   const handleStakeSubmit = () => {
     const amountAsWei = utils.parseEther(stakeAmount.toString());
-    return stakeTokens(amountAsWei.toString())
-  }
+    return stakeTokens(amountAsWei.toString());
+  };
 
   return (
     <Card
@@ -191,4 +151,4 @@ export const StakingCard = () => {
       </Box>
     </Card>
   );
-}
+};

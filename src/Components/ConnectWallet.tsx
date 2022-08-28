@@ -79,8 +79,6 @@ export const ConnectWallet = (): JSX.Element => {
           {activateError}
         </Alert>
       ) : null}
-
-      
         <Button
           onClick={handleOpen}
           variant='contained'

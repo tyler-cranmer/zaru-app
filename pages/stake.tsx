@@ -1,7 +1,7 @@
 import React from 'react';
 import type { NextPage } from 'next';
 import { Container, Typography, Box, Stack } from '@mui/material';
-import StakingCard from '../src/components/StakingCard';
+import { StakingCard } from '../src/components';
 import theme from '../src/theme';
 
 

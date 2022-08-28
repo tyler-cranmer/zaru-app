@@ -13,8 +13,7 @@ import {
   SvgIcon
 } from '@mui/material';
 import theme from '../theme';
-import RiceBowlIcon from '@mui/icons-material/RiceBowl';
-import ConnectWallet from '../components/ConnectWallet';
+import { ConnectWallet } from '../components';
 import { useEthers, useNotifications } from '@usedapp/core';
 import Image from 'next/image';
 
