@@ -28,10 +28,10 @@ const Home: NextPage = () => {
   const [userBalance, setUserBalance] = useState<string>("");
 
 
-  // const handleImputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setUserBalance(e.target.value);
-  //   console.log(newAddress)
-  // }
+const formatter = new Intl.NumberFormat('en-us', { // this came from usedapp example. trying to figure out input formats
+  minimumFractionDigits: 4,
+  maximumFractionDigits: 4,
+});
 
 
 

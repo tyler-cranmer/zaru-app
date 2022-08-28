@@ -12,6 +12,8 @@ import {
   OutlinedInputProps,
 } from '@mui/material';
 import theme from '../theme';
+import { useStakeTokens } from '../hooks';
+import { utils } from "ethers";
 
 const StyledFields = styled(Box)({
   backgroundColor: '#F3F8FC',
@@ -63,9 +65,13 @@ const CustomTextField = styled((props: TextFieldProps) => (
 }));
 
 export default function StakingCard() {
+
   const [stake, setStake] = useState('');
   const [stakeError, setStakeError] = useState(false);
-
+   const [stakeAmount, setStakeAmount] = useState<
+     number | string | Array<number | string>
+     >(0);
+  
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStakeError(false);
@@ -79,6 +85,15 @@ export default function StakingCard() {
     }
   };
 
+  const stakeTokenAddress: string =
+    '0x068F465A140131f6996Bbc5c5B7435A1a52c7DA2'; //NEED TO CHANGE FROM HARD CODEING
+  const { stakeTokens, stakeTokensState } = useStakeTokens(stakeTokenAddress);
+
+  const handleStakeSubmit = () => {
+    const amountAsWei = utils.parseEther(stakeAmount.toString());
+    return stakeTokens(amountAsWei.toString())
+  }
+
   return (
     <Card
       sx={{
@@ -90,8 +105,8 @@ export default function StakingCard() {
           <Typography
             variant='h5'
             component='h1'
-                      color='text.primary'
-                      pt='.5em'
+            color='text.primary'
+            pt='.5em'
             gutterBottom>
             Stake Your $OPI to Earn $RU
           </Typography>
@@ -146,7 +161,8 @@ export default function StakingCard() {
               </Box>
 
               <Button
-                onClick={() => console.log('you clicked me')}
+                // onClick={() => console.log('you clicked me')}
+                onClick={handleStakeSubmit}
                 type='submit'
                 variant='contained'
                 fullWidth

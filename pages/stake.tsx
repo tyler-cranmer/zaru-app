@@ -7,6 +7,8 @@ import theme from '../src/theme';
 
 
 const Stake: NextPage = () => {
+
+
   return (
     <>
       <Container
