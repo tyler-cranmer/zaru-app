@@ -64,7 +64,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-export default function StakingCard() {
+export const StakingCard = () => {
 
   const [stake, setStake] = useState('');
   const [stakeError, setStakeError] = useState(false);
