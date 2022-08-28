@@ -6,7 +6,7 @@ import theme from '../src/theme';
 
 
 
-const Staking: NextPage = () => {
+const Stake: NextPage = () => {
   return (
     <>
       <Container
@@ -54,4 +54,4 @@ const Staking: NextPage = () => {
   );
 };
 
-export default Staking;
+export default Stake;

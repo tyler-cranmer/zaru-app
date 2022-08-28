@@ -1,6 +1,5 @@
 import React from 'react';
 import type { NextPage } from 'next';
-
 import { Container, Typography, Box, Stack, Button } from '@mui/material';
 import theme from '../src/theme';
 

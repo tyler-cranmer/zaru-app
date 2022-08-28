@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Box, Button, Modal, Typography, IconButton, Alert } from '@mui/material';
+import {
+  Box,
+  Button,
+  Modal,
+  Typography,
+  IconButton,
+  Alert,
+} from '@mui/material';
 import { useEthers } from '@usedapp/core';
 import CloseIcon from '@mui/icons-material/Close';
 import { walletlink, walletconnect } from '../util/connectors';
@@ -15,37 +22,38 @@ function ConnectWallet(): JSX.Element {
 
   useEffect(() => {
     if (error && account) {
-      setActivateError(error.message)
-      return
+      setActivateError(error.message);
+      return;
     }
-    setActivateError('')
+    setActivateError('');
+  }, [error, account]);
 
-  }, [error, account])
-  
-  function Alerting(): JSX.Element | null{
-    if (activateError != '') {
-      return <Alert sx={{ marginTop: ".5em"}} severity='error'>{activateError}</Alert>;
-    } else {
-      return null
-    }
-  }
+  const ConnectMetaMask = async () => {
+    setActivateError('');
+    activateBrowserWallet();
+  };
 
   const ConnectWalletLink = async () => {
     try {
-      await activate(walletlink)
+      setActivateError('');
+      await activate(walletlink);
     } catch (error: any) {
-      setActivateError(error.message)
+      setActivateError(error.message);
     }
-  }
+  };
 
   const ConnectWalletConnect = async () => {
     try {
-      await activate(walletconnect)
+      setActivateError('');
+      await activate(walletconnect);
     } catch (error: any) {
-      setActivateError(error.message)
+      setActivateError(error.message);
     }
-  }
+  };
 
+  const CloseAlert = () => {
+    setActivateError('');
+  };
 
   const style = {
     position: 'absolute' as 'absolute',
@@ -66,15 +74,20 @@ function ConnectWallet(): JSX.Element {
 
   return (
     <>
-      <Box display={'flex'}>
-        <Alerting />
+      {activateError != '' ? (
+        <Alert onClose={CloseAlert} sx={{marginRight: '1em'}} severity='error'>
+          {activateError}
+        </Alert>
+      ) : null}
+
+      
         <Button
           onClick={handleOpen}
           variant='contained'
           sx={{ borderRadius: '10px' }}>
           Connect Wallet
         </Button>
-      </Box>
+   
       <Modal
         open={open}
         onClose={handleClose}
@@ -105,7 +118,7 @@ function ConnectWallet(): JSX.Element {
           </Box>
           <Box>
             <Button
-              onClick={ () => {activateBrowserWallet()}}
+              onClick={ConnectMetaMask}
               variant='outlined'
               size='large'
               endIcon={

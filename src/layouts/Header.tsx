@@ -25,7 +25,7 @@ function truncateHash(hash: string, length = 38): string {
 }
 
 function Header() {
-  const [open, isOpen] = useState(false)
+
   const { account, deactivate } = useEthers();
   const { notifications } = useNotifications();
   const isConnected = account !== undefined;
@@ -124,7 +124,7 @@ function Header() {
           alignItems: 'center',
         }}>
         <Box margin={'0 1.5em'}>
-          <Button href='/learn'>
+          <Button href='/Learn'>
             <Typography
               variant='h4'
               gutterBottom
@@ -142,7 +142,7 @@ function Header() {
           }}
         />
         <Box margin={'0 1.5em'}>
-          <Button href='/stake' variant='text'>
+          <Button href='/Stake' variant='text'>
             <Typography
               variant='h4'
               component='h1'
