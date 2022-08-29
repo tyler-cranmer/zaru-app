@@ -26,7 +26,6 @@ function truncateHash(hash: string, length = 38): string {
 function Header() {
 
   const { account, deactivate } = useEthers();
-  const { notifications } = useNotifications();
   const isConnected = account !== undefined;
 
 

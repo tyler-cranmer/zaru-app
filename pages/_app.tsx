@@ -25,19 +25,23 @@ interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
+
+const readOnlyUrls: Config['readOnlyUrls'] = {
+  [ChainId.OptimismGoerli]:
+    'https://opt-goerli.g.alchemy.com/v2/pCsL-C-dpHI7f-XuBOkzpDILvcjr84WN',
+  // [ChainId.Optimism]:
+  //   'https://opt-mainnet.g.alchemy.com/v2/WuZmaEQbN8Rhk-q74-A-MdUQzc605Btc',
+};
+
 const config: Config = {
   readOnlyChainId: ChainId.OptimismGoerli,
-  readOnlyUrls: {
-    [ChainId.OptimismGoerli]:
-      'https://opt-goerli.g.alchemy.com/v2/pCsL-C-dpHI7f-XuBOkzpDILvcjr84WN',
-    // [ChainId.Optimism]:
-    //   'https://opt-mainnet.g.alchemy.com/v2/WuZmaEQbN8Rhk-q74-A-MdUQzc605Btc',
-  },
+  readOnlyUrls,
   networks: [OptimismGoerli],
   notifications: {
     expirationPeriod: 1000,
     checkInterval: 1000,
   },
+  noMetamaskDeactivate: true,
 };
 
 export default function MyApp(props: MyAppProps) {

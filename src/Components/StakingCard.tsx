@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Card,
   CardActions,
@@ -7,11 +7,18 @@ import {
   Button,
   Typography,
   styled,
+  Snackbar,
+  CircularProgress,
 } from '@mui/material';
 import theme from '../theme';
-import { useStakeTokens } from '../hooks';
-import { utils } from 'ethers';
+import { useBalanceOf, useStakeContractFunc, useStakeTokens } from '../hooks';
 import { CustomTextField } from './minorComponents/CustomTextField';
+import networkMapping from '../abis/map.json';
+import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
+import { constants, utils } from 'ethers';
+import { formatUnits } from '@ethersproject/units';
+import { formatEther } from 'ethers/lib/utils';
+
 
 const StyledFields = styled(Box)({
   backgroundColor: '#F3F8FC',
@@ -26,17 +33,39 @@ const StyledFields = styled(Box)({
 
 
 export const StakingCard = () => {
-  const [stake, setStake] = useState('');
+  const { chainId, account } = useEthers();
+  const { notifications } = useNotifications();
+  const [stake, setStake] = useState<number | string | Array<number | string>>(
+    0
+  ); //Need to move functionality to stakeAmount, setStakeAmount
   const [stakeError, setStakeError] = useState(false);
+  const [showErc20ApprovalSuccess, setShowErc20ApprovalSuccess] =
+    useState(false);
+   const [showStakeTokensSuccess, setShowStakeTokensSuccess] = useState(false);
   const [stakeAmount, setStakeAmount] = useState<
     number | string | Array<number | string>
-  >(0);
+    >(0);
+  
+    const opiTokenAddress = chainId
+      ? networkMapping[String(chainId)]['OPIToken'][0]
+      : constants.AddressZero;
+  const isConnected = account !== undefined;
+  
+
+     const stakedTokenBalance = useBalanceOf(account);
+     const walletBalance = useTokenBalance(opiTokenAddress, account);
+     const rewardsEarned = useStakeContractFunc('earned', account);
+
+
+   const formattedTokenBalance: number = walletBalance
+     ? parseFloat(formatUnits(walletBalance, 18))
+     : 0;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStakeError(false);
 
-    if (stake == '') {
+    if (stake == 0) {
       setStakeError(true);
     }
 
@@ -44,17 +73,50 @@ export const StakingCard = () => {
       console.log(stake);
     }
   };
-
-  /*
-  const stakeTokenAddress: string =
-    '0x068F465A140131f6996Bbc5c5B7435A1a52c7DA2'; //NEED TO CHANGE FROM HARD CODEING
-  const { stakeTokens, stakeTokensState } = useStakeTokens(stakeTokenAddress);
-
+/*
+  const { send: stakeTokensSend, state: stakeTokensState } = useStakeTokens(opiTokenAddress);
+  
   const handleStakeSubmit = () => {
     const amountAsWei = utils.parseEther(stakeAmount.toString());
-    return stakeTokens(amountAsWei.toString());
-  };
-*/
+    return stakeTokensSend(amountAsWei.toString())
+  }
+
+    const handleCloseSnack = () => {
+      showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(false);
+      showStakeTokensSuccess && setShowStakeTokensSuccess(false);
+    };
+  
+  useEffect(() => {
+    if (
+      notifications.filter(
+        (notification) =>
+          notification.type === 'transactionSucceed' &&
+          notification.transactionName === 'Approve ERC20 transfer'
+      ).length > 0
+    ) {
+      !showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(true);
+      showStakeTokensSuccess && setShowStakeTokensSuccess(false);
+    }
+
+    if (
+      notifications.filter(
+        (notification) =>
+          notification.type === 'transactionSucceed' &&
+          notification.transactionName === 'Stake tokens'
+      ).length > 0
+    ) {
+      showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(false);
+      !showStakeTokensSuccess && setShowStakeTokensSuccess(true);
+    }
+  }, [notifications, showErc20ApprovalSuccess, showStakeTokensSuccess]);
+
+  const isMining = stakeTokensState.status === 'Mining';
+
+  const hasZeroBalance = formattedTokenBalance === 0;
+  const hasZeroAmountSelected = parseFloat(stakeAmount.toString()) === 0;
+
+  */
+
   return (
     <Card
       sx={{
@@ -86,15 +148,19 @@ export const StakingCard = () => {
             }}>
             <StyledFields>
               <Typography variant='caption'> Staked OPI</Typography>
-              <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
-                420.69
-              </Typography>
+              {stakedTokenBalance && (
+                <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                  {formatEther(stakedTokenBalance)}
+                </Typography>
+              )}
             </StyledFields>
             <StyledFields>
               <Typography variant='caption'>RU Earned</Typography>
-              <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
-                420.69
-              </Typography>
+              {rewardsEarned && (
+                <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                  {formatEther(rewardsEarned)}
+                </Typography>
+              )}
             </StyledFields>
             <Button
               variant='contained'
@@ -108,22 +174,22 @@ export const StakingCard = () => {
             </Button>
           </Box>
 
-          <form noValidate autoComplete='off' >
+          <form noValidate autoComplete='off'>
             <Box sx={{ display: 'flex' }}>
               <Box>
                 <CustomTextField
-                  onChange={(e) => setStake(e.target.value)}
+                  // onChange={}
                   label='Stake OPI Tokens'
-                  defaultValue='0.0'
                   id='reddit-input'
                   variant='filled'
+                  type={'number'}
+                  value={stake}
                   error={stakeError}
                 />
               </Box>
 
               <Button
                 onClick={() => console.log('you clicked me')}
-                
                 type='submit'
                 variant='contained'
                 fullWidth
@@ -140,13 +206,15 @@ export const StakingCard = () => {
           </form>
           <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
             <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
-            <Typography
-              variant='caption'
-              sx={{ fontWeight: 'bold' }}
-              gutterBottom>
-              {' '}
-              3,944.16
-            </Typography>
+            {walletBalance && (
+              <Typography
+                variant='caption'
+                sx={{ fontWeight: 'bold' }}
+                gutterBottom>
+                {' '}
+                {formatEther(walletBalance)}
+              </Typography>
+            )}
           </Box>
         </CardActions>
       </Box>
