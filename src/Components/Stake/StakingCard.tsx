@@ -11,14 +11,17 @@ import {
   CircularProgress,
 } from '@mui/material';
 import theme from '../../theme';
-import { useBalanceOf, useStakeContractFunc, useStakeTokens } from '../../hooks';
+import {
+  useBalanceOf,
+  useStakeContractFunc,
+  useStakeTokens,
+} from '../../hooks';
 import { CustomTextField } from '../minorComponents/CustomTextField';
 import networkMapping from '../../abis/map.json';
 import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
 import { constants, utils } from 'ethers';
 import { formatUnits } from '@ethersproject/units';
 import { formatEther } from 'ethers/lib/utils';
-
 
 const StyledFields = styled(Box)({
   backgroundColor: '#F3F8FC',
@@ -30,8 +33,6 @@ const StyledFields = styled(Box)({
   padding: '8px 12px 8px 12px',
 });
 
-
-
 export const StakingCard = () => {
   const { chainId, account } = useEthers();
   const { notifications } = useNotifications();
@@ -41,25 +42,23 @@ export const StakingCard = () => {
   const [stakeError, setStakeError] = useState(false);
   const [showErc20ApprovalSuccess, setShowErc20ApprovalSuccess] =
     useState(false);
-   const [showStakeTokensSuccess, setShowStakeTokensSuccess] = useState(false);
+  const [showStakeTokensSuccess, setShowStakeTokensSuccess] = useState(false);
   const [stakeAmount, setStakeAmount] = useState<
     number | string | Array<number | string>
-    >(0);
-  
-    const opiTokenAddress = chainId
-      ? networkMapping[String(chainId)]['OPIToken'][0]
-      : constants.AddressZero;
+  >(0);
+
+  const opiTokenAddress = chainId
+    ? networkMapping[String(chainId)]['OPIToken'][0]
+    : constants.AddressZero;
   const isConnected = account !== undefined;
-  
 
-     const stakedTokenBalance = useBalanceOf(account);
-     const walletBalance = useTokenBalance(opiTokenAddress, account);
-     const rewardsEarned = useStakeContractFunc('earned', account);
+  const stakedTokenBalance = useBalanceOf(account);
+  const walletBalance = useTokenBalance(opiTokenAddress, account);
+  const rewardsEarned = useStakeContractFunc('earned', account);
 
-
-   const formattedTokenBalance: number = walletBalance
-     ? parseFloat(formatUnits(walletBalance, 18))
-     : 0;
+  const formattedTokenBalance: number = walletBalance
+    ? parseFloat(formatUnits(walletBalance, 18))
+    : 0;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -73,7 +72,7 @@ export const StakingCard = () => {
       console.log(stake);
     }
   };
-/*
+  /*
   const { send: stakeTokensSend, state: stakeTokensState } = useStakeTokens(opiTokenAddress);
   
   const handleStakeSubmit = () => {
@@ -178,7 +177,7 @@ export const StakingCard = () => {
             <Box sx={{ display: 'flex' }}>
               <Box>
                 <CustomTextField
-                  // onChange={}
+                  onChange={(e) => setStake(e.currentTarget.value)}
                   label='Stake OPI Tokens'
                   id='reddit-input'
                   variant='filled'

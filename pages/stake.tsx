@@ -9,17 +9,16 @@ import { useEthers } from '@usedapp/core';
 const Stake: NextPage = () => {
   const { account, error } = useEthers();
   const isConnected = account !== undefined;
+  const [showNetworkError, setShowNetworkError] = useState(false);
+
 
   return (
     <>
       <Container
         maxWidth='lg'
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {isConnected ? (
-          <StakingCard />
-        ) : (
-          <ConnectionRequiredMsg />
-        )}
+        {isConnected ? ( <StakingCard />):(<ConnectionRequiredMsg/>)}
+       
         <Stack
           mt={2}
           direction='column'
