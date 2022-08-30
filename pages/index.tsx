@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import type { NextPage } from 'next';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, Typography, Container, Snackbar } from '@mui/material';
 import { useEthers, useTokenBalance } from '@usedapp/core';
 import { formatEther } from 'ethers/lib/utils';
 import { BigNumber } from 'ethers';
