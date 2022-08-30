@@ -1,20 +1,25 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import type { NextPage } from 'next';
 import { Container, Typography, Box, Stack } from '@mui/material';
 import { StakingCard } from '../src/components';
+import { ConnectionRequiredMsg } from '../src/components';
 import theme from '../src/theme';
-
-
+import { useEthers } from '@usedapp/core';
 
 const Stake: NextPage = () => {
-
+  const { account, error } = useEthers();
+  const isConnected = account !== undefined;
 
   return (
     <>
       <Container
         maxWidth='lg'
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <StakingCard />
+        {isConnected ? (
+          <StakingCard />
+        ) : (
+          <ConnectionRequiredMsg />
+        )}
         <Stack
           mt={2}
           direction='column'

@@ -10,10 +10,10 @@ import {
   Snackbar,
   CircularProgress,
 } from '@mui/material';
-import theme from '../theme';
-import { useBalanceOf, useStakeContractFunc, useStakeTokens } from '../hooks';
-import { CustomTextField } from './minorComponents/CustomTextField';
-import networkMapping from '../abis/map.json';
+import theme from '../../theme';
+import { useBalanceOf, useStakeContractFunc, useStakeTokens } from '../../hooks';
+import { CustomTextField } from '../minorComponents/CustomTextField';
+import networkMapping from '../../abis/map.json';
 import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
 import { constants, utils } from 'ethers';
 import { formatUnits } from '@ethersproject/units';
