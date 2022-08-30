@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent, useEffect } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -25,9 +25,8 @@ function truncateHash(hash: string, length = 38): string {
 
 function Header() {
 
-  const { account, deactivate } = useEthers();
+  const { activateBrowserWallet, account, deactivate, error } = useEthers();
   const isConnected = account !== undefined;
-
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const menuOpen = Boolean(anchorEl);
@@ -53,7 +52,7 @@ function Header() {
           boxShadow: '0px 0px 0px 0px',
           borderBottom: '1px solid #e5e5e5',
         }}>
-        <Toolbar sx={{ justifyContent: 'space-between'}}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Link href='/' sx={{ textDecoration: 'none' }}>
             <IconButton
               size='large'
@@ -78,7 +77,7 @@ function Header() {
                     flexGrow: 1,
                     color: theme.palette.primary.main,
                     alignSelf: 'center',
-                    marginTop: '.25em'
+                    marginTop: '.25em',
                   }}>
                   Zaru Finance
                 </Typography>
@@ -109,6 +108,7 @@ function Header() {
               </div>
             ) : (
               <ConnectWallet />
+
             )}
           </Box>
         </Toolbar>
@@ -122,7 +122,7 @@ function Header() {
           alignItems: 'center',
         }}>
         <Box margin={'0 1.5em'}>
-          <Button href='/Learn'>
+          <Button href='/learn'>
             <Typography
               variant='h4'
               gutterBottom
@@ -140,7 +140,7 @@ function Header() {
           }}
         />
         <Box margin={'0 1.5em'}>
-          <Button href='/Stake' variant='text'>
+          <Button href='/stake' variant='text'>
             <Typography
               variant='h4'
               component='h1'
