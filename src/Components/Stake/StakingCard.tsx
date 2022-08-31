@@ -125,6 +125,10 @@ export const StakingCard = () => {
                   id='reddit-input'
                   variant='filled'
                   type={'number'}
+                  InputProps={{
+                    inputProps: { min: 0, max: formattedTokenBalance },
+                    disableUnderline: true,
+                  }}
                   value={amount}
                   error={stakeError}
                   disabled={isMining || hasZeroBalance}
@@ -154,7 +158,7 @@ export const StakingCard = () => {
                     gutterBottom>
                     {formattedTokenBalance}
                   </Typography>
-                  <Typography variant='caption' >Max</Typography>
+                  <Typography variant='caption'>Max</Typography>
                 </>
               )}
             </Box>

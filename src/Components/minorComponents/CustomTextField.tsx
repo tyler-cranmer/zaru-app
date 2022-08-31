@@ -1,9 +1,8 @@
 import { TextField, TextFieldProps, OutlinedInputProps, styled } from "@mui/material";
 
 
-export const CustomTextField = styled((props: TextFieldProps) =>  (
+export const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
-    InputProps={{ disableUnderline: true } as Partial<OutlinedInputProps>}
     {...props}
   />
 ))(({ theme }) => ({
@@ -15,7 +14,7 @@ export const CustomTextField = styled((props: TextFieldProps) =>  (
     borderColor: 'red',
     borderRadius: 10,
     border: '1px solid transparent',
-    backgroundColor: 'white',
+    backgroundColor: '#F3F8FC',
     color: 'gray',
     fontWeight: 'bold',
     width: '23em',
@@ -26,10 +25,10 @@ export const CustomTextField = styled((props: TextFieldProps) =>  (
       'box-shadow',
     ]),
     '&:hover': {
-      backgroundColor: 'white',
+      backgroundColor: '#F3F8FC',
     },
     '&.Mui-focused': {
-      backgroundColor: 'white',
+      backgroundColor: '#F3F8FC',
       borderColor: 'transparent',
       color: 'black',
     },
