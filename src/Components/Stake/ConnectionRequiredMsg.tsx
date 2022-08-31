@@ -87,7 +87,11 @@ export const ConnectionRequiredMsg = () => {
                 label='Stake OPI Tokens'
                 id='reddit-input'
                 variant='filled'
-                // type={'number'}
+                type={'number'}
+                InputProps={{
+                  inputProps: { min: 0, max:0 },
+                  disableUnderline: true,
+                }}
                 defaultValue='0'
               />
             </Box>

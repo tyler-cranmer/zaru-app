@@ -13,6 +13,7 @@ import {
   useStakeContractFunc,
 } from '../../hooks';
 import { formatEther } from 'ethers/lib/utils';
+import { formatUnits } from '@ethersproject/units';
 import { useUnstakeTokens } from '../../hooks';
 
 const StyledFields = styled(Box)({
@@ -31,6 +32,11 @@ export const UnstakeForm = (): JSX.Element => {
   const { notifications } = useNotifications();
   const stakedTokenBalance = useBalanceOf(account);
   const rewardsBalance = useStakeContractFunc('earned', account);
+
+  const formattedTokenBalance: number = stakedTokenBalance
+    ? parseFloat(formatUnits(stakedTokenBalance, 18))
+    : 0;
+
 
   const { send: unstakeTokensSend, state: unstakeTokensState } =
       useUnstakeTokens();
@@ -59,7 +65,7 @@ export const UnstakeForm = (): JSX.Element => {
       }, [notifications, showUnstakeSuccess]);
 
       const isMining = unstakeTokensState.status === 'Mining';
-
+      const hasZeroBalance = formattedTokenBalance === 0;
     return (
       <>
         <Box
@@ -69,7 +75,7 @@ export const UnstakeForm = (): JSX.Element => {
             paddingBottom: '1em',
           }}>
           <Box sx={{ display: 'flex' }}>
-            <StyledFields sx={{marginLeft: "8px"}}>
+            <StyledFields sx={{ marginLeft: '8px' }}>
               <Typography variant='caption'> Staked OPI</Typography>
               {stakedTokenBalance ? (
                 <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
@@ -96,7 +102,7 @@ export const UnstakeForm = (): JSX.Element => {
           </Box>
           <Button
             onClick={handleUnstakeSubmit}
-            disabled={isMining}
+            disabled={isMining || hasZeroBalance}
             variant='contained'
             sx={{
               borderRadius: '10px',

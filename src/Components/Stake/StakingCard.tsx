@@ -6,7 +6,6 @@ import {
   Box,
   Button,
   Typography,
-  styled,
   Snackbar,
   CircularProgress,
   Alert,
@@ -14,8 +13,6 @@ import {
 import theme from '../../theme';
 import { UnstakeForm } from './UnstakeForm';
 import {
-  useBalanceOf,
-  useStakeContractFunc,
   useStakeTokens,
 } from '../../hooks';
 import { CustomTextField } from '../minorComponents/CustomTextField';
@@ -23,7 +20,7 @@ import opiToken from '../../abis/opi_test.json';
 import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
 import { utils } from 'ethers';
 import { formatUnits } from '@ethersproject/units';
-import { formatEther } from 'ethers/lib/utils';
+
 
 export const StakingCard = () => {
   const { account } = useEthers();
