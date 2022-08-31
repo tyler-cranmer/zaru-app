@@ -25,7 +25,6 @@ import { utils } from 'ethers';
 import { formatUnits } from '@ethersproject/units';
 import { formatEther } from 'ethers/lib/utils';
 
-
 export const StakingCard = () => {
   const { account } = useEthers();
   const { notifications } = useNotifications();
@@ -48,10 +47,9 @@ export const StakingCard = () => {
 
   const { send: stakeTokensSend, state: stakeTokensState } =
     useStakeTokens(opiTokenAddress);
-  
 
   const handleStakeSubmit = () => {
-     setStakeError(false);
+    setStakeError(false);
     if (parseFloat(amount.toString()) === 0) {
       setStakeError(true);
     } else {
@@ -132,7 +130,6 @@ export const StakingCard = () => {
                   disabled={isMining || hasZeroBalance}
                 />
               </Box>
-
               <Button
                 onClick={handleStakeSubmit}
                 disabled={isMining || hasZeroAmountSelected}
@@ -140,7 +137,6 @@ export const StakingCard = () => {
                 fullWidth
                 sx={{
                   borderRadius: '10px',
-
                   paddingLeft: '2.75em',
                   paddingRight: '2.75em',
                   margin: '1px',
@@ -148,7 +144,6 @@ export const StakingCard = () => {
                 {isMining ? <CircularProgress size={26} /> : 'Stake'}
               </Button>
             </Box>
-
             <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
               <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
               {walletBalance && (
@@ -156,7 +151,6 @@ export const StakingCard = () => {
                   variant='caption'
                   sx={{ fontWeight: 'bold' }}
                   gutterBottom>
-                  {' '}
                   {formattedTokenBalance}
                 </Typography>
               )}
