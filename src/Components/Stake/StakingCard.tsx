@@ -9,12 +9,15 @@ import {
   Snackbar,
   CircularProgress,
   Alert,
+  styled,
+  ButtonProps,
 } from '@mui/material';
 import theme from '../../theme';
 import { UnstakeForm } from './UnstakeForm';
 import {
   useStakeTokens,
 } from '../../hooks';
+import { MaxButton } from '../minorComponents/MaxSubmitButton';
 import { CustomTextField } from '../minorComponents/CustomTextField';
 import opiToken from '../../abis/opi_test.json';
 import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
@@ -42,9 +45,11 @@ export const StakingCard = () => {
     ? parseFloat(formatUnits(walletBalance, 18))
     : 0;
 
+  
   const { send: stakeTokensSend, state: stakeTokensState } =
     useStakeTokens(opiTokenAddress);
 
+  // Submitting the stake token hook.  
   const handleStakeSubmit = () => {
     setStakeError(false);
     if (parseFloat(amount.toString()) === 0) {
@@ -55,11 +60,17 @@ export const StakingCard = () => {
     }
   };
 
+  const handleMaxSubmit = () => {
+    setAmount(formattedTokenBalance);
+  }
+
   const handleCloseSnack = () => {
     showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(false);
     showStakeTokensSuccess && setShowStakeTokensSuccess(false);
   };
 
+
+  // Tracking the states of approving erc20 transfer and staking the tokens
   useEffect(() => {
     if (
       notifications.filter(
@@ -88,6 +99,7 @@ export const StakingCard = () => {
 
   const hasZeroBalance = formattedTokenBalance === 0;
   const hasZeroAmountSelected = parseFloat(amount.toString()) === 0;
+
 
   return (
     <>
@@ -125,6 +137,9 @@ export const StakingCard = () => {
                   InputProps={{
                     inputProps: { min: 0, max: formattedTokenBalance },
                     disableUnderline: true,
+                    endAdornment: (
+                      <MaxButton onClick={handleMaxSubmit} />
+                    ),
                   }}
                   value={amount}
                   error={stakeError}
@@ -155,7 +170,6 @@ export const StakingCard = () => {
                     gutterBottom>
                     {formattedTokenBalance}
                   </Typography>
-                  <Typography variant='caption'>Max</Typography>
                 </>
               )}
             </Box>
