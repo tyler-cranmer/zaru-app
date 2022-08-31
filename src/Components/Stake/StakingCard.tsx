@@ -9,6 +9,7 @@ import {
   styled,
   Snackbar,
   CircularProgress,
+  Alert,
 } from '@mui/material';
 import theme from '../../theme';
 import {
@@ -17,7 +18,7 @@ import {
   useStakeTokens,
 } from '../../hooks';
 import { CustomTextField } from '../minorComponents/CustomTextField';
-import networkMapping from '../../abis/map.json';
+import opiToken from '../../abis/opi_test.json';
 import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
 import { constants, utils } from 'ethers';
 import { formatUnits } from '@ethersproject/units';
@@ -34,23 +35,18 @@ const StyledFields = styled(Box)({
 });
 
 export const StakingCard = () => {
-  const { chainId, account } = useEthers();
+  const {  account } = useEthers();
   const { notifications } = useNotifications();
-  const [stake, setStake] = useState<number | string | Array<number | string>>(
-    0
-  ); //Need to move functionality to stakeAmount, setStakeAmount
   const [stakeError, setStakeError] = useState(false);
   const [showErc20ApprovalSuccess, setShowErc20ApprovalSuccess] =
     useState(false);
   const [showStakeTokensSuccess, setShowStakeTokensSuccess] = useState(false);
-  const [stakeAmount, setStakeAmount] = useState<
+  const [amount, setAmount] = useState<
     number | string | Array<number | string>
   >(0);
 
-  const opiTokenAddress = chainId
-    ? networkMapping[String(chainId)]['OPIToken'][0]
-    : constants.AddressZero;
-  const isConnected = account !== undefined;
+  const { address } = opiToken;
+  const opiTokenAddress = address;
 
   const stakedTokenBalance = useBalanceOf(account);
   const walletBalance = useTokenBalance(opiTokenAddress, account);
@@ -60,31 +56,33 @@ export const StakingCard = () => {
     ? parseFloat(formatUnits(walletBalance, 18))
     : 0;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStakeError(false);
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setStakeError(false);
 
-    if (stake == 0) {
-      setStakeError(true);
-    }
+  //   if (stake == 0) {
+  //     setStakeError(true);
+  //   }
 
-    if (stake) {
-      console.log(stake);
-    }
-  };
-  /*
-  const { send: stakeTokensSend, state: stakeTokensState } = useStakeTokens(opiTokenAddress);
-  
+  //   if (stake) {
+  //     console.log(stake);
+  //   }
+  // };
+
+  const { send: stakeTokensSend, state: stakeTokensState } =
+    useStakeTokens(opiTokenAddress);
+
   const handleStakeSubmit = () => {
-    const amountAsWei = utils.parseEther(stakeAmount.toString());
-    return stakeTokensSend(amountAsWei.toString())
-  }
+    const amountAsWei = utils.parseEther(amount.toString());
+    return stakeTokensSend(amountAsWei.toString());
+  };
 
-    const handleCloseSnack = () => {
-      showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(false);
-      showStakeTokensSuccess && setShowStakeTokensSuccess(false);
-    };
-  
+  const handleCloseSnack = () => {
+    showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(false);
+    showStakeTokensSuccess && setShowStakeTokensSuccess(false);
+  };
+
+
   useEffect(() => {
     if (
       notifications.filter(
@@ -104,6 +102,7 @@ export const StakingCard = () => {
           notification.transactionName === 'Stake tokens'
       ).length > 0
     ) {
+
       showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(false);
       !showStakeTokensSuccess && setShowStakeTokensSuccess(true);
     }
@@ -112,84 +111,91 @@ export const StakingCard = () => {
   const isMining = stakeTokensState.status === 'Mining';
 
   const hasZeroBalance = formattedTokenBalance === 0;
-  const hasZeroAmountSelected = parseFloat(stakeAmount.toString()) === 0;
-
-  */
+  const hasZeroAmountSelected = parseFloat(amount.toString()) === 0;
 
   return (
-    <Card
-      sx={{
-        backgroundColor: theme.palette.secondary.main,
-        borderRadius: '20px',
-      }}>
-      <Box pl='3em' pr='1.5em'>
-        <CardContent>
-          <Typography
-            variant='h5'
-            component='h1'
-            color='text.primary'
-            pt='.5em'
-            gutterBottom>
-            Stake Your $OPI to Earn $RU
-          </Typography>
-        </CardContent>
-        <CardActions
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-          }}>
-          <Box
+    <>
+      <Card
+        sx={{
+          backgroundColor: theme.palette.secondary.main,
+          borderRadius: '20px',
+        }}>
+        <Box pl='3em' pr='1.5em'>
+          <CardContent>
+            <Typography
+              variant='h5'
+              component='h1'
+              color='text.primary'
+              pt='.5em'
+              gutterBottom>
+              Stake Your $OPI to Earn $RU
+            </Typography>
+          </CardContent>
+          <CardActions
             sx={{
               display: 'flex',
-              marginBottom: '1.5em',
-              paddingBottom: '1em',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
             }}>
-            <StyledFields>
-              <Typography variant='caption'> Staked OPI</Typography>
-              {stakedTokenBalance && (
-                <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
-                  {formatEther(stakedTokenBalance)}
-                </Typography>
-              )}
-            </StyledFields>
-            <StyledFields>
-              <Typography variant='caption'>RU Earned</Typography>
-              {rewardsEarned && (
-                <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
-                  {formatEther(rewardsEarned)}
-                </Typography>
-              )}
-            </StyledFields>
-            <Button
-              variant='contained'
+            <Box
               sx={{
-                borderRadius: '10px',
-                paddingLeft: '2em',
-                paddingRight: '2em',
-                margin: '2px',
+                display: 'flex',
+                marginBottom: '1.5em',
+                paddingBottom: '1em',
               }}>
-              Unstake
-            </Button>
-          </Box>
+              <StyledFields>
+                <Typography variant='caption'> Staked OPI</Typography>
+                {stakedTokenBalance ? (
+                  <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                    {formatEther(stakedTokenBalance)}
+                  </Typography>
+                ) : (
+                  <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                    0
+                  </Typography>
+                )}
+              </StyledFields>
+              <StyledFields>
+                <Typography variant='caption'>RU Earned</Typography>
+                {stakedTokenBalance ? (
+                  <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                    {formatEther(stakedTokenBalance)}
+                  </Typography>
+                ) : (
+                  <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                    0
+                  </Typography>
+                )}
+              </StyledFields>
+              <Button
+                variant='contained'
+                sx={{
+                  borderRadius: '10px',
+                  paddingLeft: '2em',
+                  paddingRight: '2em',
+                  margin: '2px',
+                }}>
+                Unstake
+              </Button>
+            </Box>
 
-          <form noValidate autoComplete='off'>
             <Box sx={{ display: 'flex' }}>
               <Box>
                 <CustomTextField
-                  onChange={(e) => setStake(e.currentTarget.value)}
+                  onChange={(e) => setAmount(e.currentTarget.value)}
                   label='Stake OPI Tokens'
                   id='reddit-input'
                   variant='filled'
                   type={'number'}
-                  value={stake}
+                  value={amount}
                   error={stakeError}
+                  disabled={isMining || hasZeroBalance}
                 />
               </Box>
 
               <Button
-                onClick={() => console.log('you clicked me')}
-                type='submit'
+                onClick={handleStakeSubmit}
+                disabled={isMining || hasZeroAmountSelected}
                 variant='contained'
                 fullWidth
                 sx={{
@@ -199,24 +205,57 @@ export const StakingCard = () => {
                   paddingRight: '2.75em',
                   margin: '1px',
                 }}>
-                Stake
+                {isMining ? <CircularProgress size={26} /> : 'Stake'}
               </Button>
             </Box>
-          </form>
-          <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
-            <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
-            {walletBalance && (
-              <Typography
-                variant='caption'
-                sx={{ fontWeight: 'bold' }}
-                gutterBottom>
-                {' '}
-                {formatEther(walletBalance)}
-              </Typography>
-            )}
-          </Box>
-        </CardActions>
-      </Box>
-    </Card>
+
+            <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
+              <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
+              {walletBalance && (
+                <Typography
+                  variant='caption'
+                  sx={{ fontWeight: 'bold' }}
+                  gutterBottom>
+                  {' '}
+                  {formattedTokenBalance}
+                </Typography>
+              )}
+            </Box>
+          </CardActions>
+        </Box>
+      </Card>
+      {notifications.map((notification) => {
+        if ('transaction' in notification) {
+          return (
+            <div>
+              <Typography>{notification.transactionName}</Typography>
+              <Typography>{notification.id}</Typography>
+            </div>
+          );
+        } else
+          return (
+            <div>
+              <Typography>{notification.id}</Typography>
+            </div>
+          );
+      })}
+      <Snackbar
+        open={showErc20ApprovalSuccess}
+        autoHideDuration={5000}
+        onClose={handleCloseSnack}>
+        <Alert onClose={handleCloseSnack} severity='success'>
+          ERC-20 token transfer approved successfully! Now approve the 2nd tx to
+          initiate the staking transfer.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={showStakeTokensSuccess}
+        autoHideDuration={5000}
+        onClose={handleCloseSnack}>
+        <Alert onClose={handleCloseSnack} severity='success'>
+          Tokens staked successfully!
+        </Alert>
+      </Snackbar>
+    </>
   );
 };

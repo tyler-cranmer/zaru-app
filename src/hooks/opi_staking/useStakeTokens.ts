@@ -8,19 +8,21 @@ import networkMapping from "../../abis/map.json"
 
 export const useStakeTokens = (tokenAddress: string) => {
     const { chainId } = useEthers();
-    const { abi } = StakingContract;
-    const stakingContractAddress = chainId
-      ? networkMapping[String(chainId)]['Farm'][0]
-      : constants.AddressZero;
+    const { abi, address } = StakingContract;
+    // const stakingContractAddress = chainId
+    //   ? networkMapping[String(chainId)]['Farm'][0]
+    //   : constants.AddressZero;
+        const stakingContractAddress = address
     const stakingContractInterface = new utils.Interface(abi)
     const stakingContract = new Contract(
         stakingContractAddress,
         stakingContractInterface
     )
 
-    const { send: stakeTokensSend, state: stakeTokensState } = useContractFunction(stakingContract, "stake", {
+    const { send: stakeTokensSend, state: stakeTokensState } =
+      useContractFunction(stakingContract, 'stake', {
         transactionName: 'Stake tokens',
-    })
+      });
 
     const erc20Interface = new utils.Interface(ERC20.abi)
     const tokenContract = new Contract(tokenAddress, erc20Interface)
@@ -32,17 +34,20 @@ export const useStakeTokens = (tokenAddress: string) => {
     const [amountToStake, setAmountToStake] = useState("0")
 
     useEffect(() => {
-      if (approveErc20State.status === 'Success') {
-        stakeTokensSend(amountToStake, tokenAddress);
+        if (approveErc20State.status === 'Success') {
+    
+            stakeTokensSend(amountToStake);
+
         // the dependency arry
         // the code inside the useEffect anytime
         // anything in this list changes
         // if you want something to run when the component first runs
         // you just have a blank list
       }
-    }, [approveErc20State, amountToStake, tokenAddress]);
+    }, [approveErc20State, amountToStake]);
 
     const send = (amount: string) => {
+        
         setAmountToStake(amount)
         return approveErc20Send(stakingContractAddress, amount);
     }

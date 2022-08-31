@@ -12,9 +12,10 @@ export const useBalanceOf = (accountAddress: string | undefined): BigNumber | un
   const { chainId } = useEthers();
   const { abi, address } = StakingContract;
 
-  const stakingContractAddress = address
-    ? networkMapping[String(chainId)]['Farm'][0]
-    : constants.AddressZero;
+  // const stakingContractAddress = chainId
+  //   ? networkMapping[String(chainId)]['Farm'][0]
+  //   : constants.AddressZero;
+  const stakingContractAddress = address;
   const stakingContractInterface = new utils.Interface(abi);
   const stakingContract = new Contract(
     stakingContractAddress,

@@ -78,7 +78,6 @@ export const ConnectionRequiredMsg = () => {
             </Button>
           </Box>
 
-          <form noValidate autoComplete='off'>
             <Box sx={{ display: 'flex' }}>
               <Box>
                 <CustomTextField
@@ -105,7 +104,6 @@ export const ConnectionRequiredMsg = () => {
                 Stake
               </Button>
             </Box>
-          </form>
           <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
             <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
 

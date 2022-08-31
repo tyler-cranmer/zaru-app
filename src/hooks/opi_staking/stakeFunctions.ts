@@ -13,10 +13,11 @@ import networkMapping from '../../abis/map.json';
 
 export const useSimpleFunction = (functionName: string) => {
   const { chainId } = useEthers();
-    const { abi } = StakingContract;
-  const stakingContractAddress = chainId
-    ? networkMapping[String(chainId)]["Farm"][0]
-    : constants.AddressZero;
+    const { abi, address } = StakingContract;
+  // const stakingContractAddress = chainId
+  //   ? networkMapping[String(chainId)]["Farm"][0]
+  //   : constants.AddressZero;
+      const stakingContractAddress = address;
   const stakingContractInterface = new utils.Interface(abi);
   const stakingContract = new Contract(
     stakingContractAddress,
@@ -52,10 +53,11 @@ export const useStakeContractFunc = (
   accountAddress: string | undefined
 ) => {
   const { chainId } = useEthers();
-  const { abi } = StakingContract;
-  const stakingContractAddress = chainId
-    ? networkMapping[String(chainId)]['Farm'][0]
-    : constants.AddressZero;
+  const { abi, address } = StakingContract;
+  // const stakingContractAddress = chainId
+  //   ? networkMapping[String(chainId)]['Farm'][0]
+  //   : constants.AddressZero;
+  const stakingContractAddress = address;
   const stakingContractInterface = new utils.Interface(abi);
   const stakingContract = new Contract(
     stakingContractAddress,
