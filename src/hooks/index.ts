@@ -1,5 +1,6 @@
 export { useStakeTokens } from './opi_staking/useStakeTokens';
-export { useBalanceOf } from "./opi_staking/useBalanceOf";
+export { useBalanceOf } from './opi_staking/useBalanceOf';
+export { useUnstakeTokens } from './opi_staking/useUnstakeTokens';
 export {
   useSimpleFunction,
   useStakeContractFunc,

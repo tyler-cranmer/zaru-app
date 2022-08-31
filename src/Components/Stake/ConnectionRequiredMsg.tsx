@@ -50,6 +50,7 @@ export const ConnectionRequiredMsg = () => {
               display: 'flex',
               marginBottom: '1.5em',
               paddingBottom: '1em',
+              marginRight: '.5em'
             }}>
             <StyledFields>
               <Typography variant='caption'> Staked OPI</Typography>
@@ -84,7 +85,7 @@ export const ConnectionRequiredMsg = () => {
                   label='Stake OPI Tokens'
                   id='reddit-input'
                   variant='filled'
-                  type={'number'}
+                  // type={'number'}
                   defaultValue='0'
                 />
               </Box>
