@@ -122,7 +122,7 @@ export const StakingCard = () => {
             <Box sx={{ display: 'flex' }}>
               <Box>
                 <CustomTextField
-                  onChange={(e) => setAmount(e.currentTarget.value)}
+                  onChange={(e: any) => setAmount(e.currentTarget.value)}
                   label='Stake OPI Tokens'
                   id='reddit-input'
                   variant='filled'

@@ -4,51 +4,58 @@ import type { NextPage } from 'next';
 import { Box, Button, TextField, Typography, Container, Snackbar } from '@mui/material';
 import { useEthers, useTokenBalance } from '@usedapp/core';
 import { formatEther } from 'ethers/lib/utils';
-import { BigNumber } from 'ethers';
-import { useBalanceOf, useSimpleFunction } from '../src/hooks';
+import { utils } from 'ethers';
+import { useBalanceOf, useSimpleFunction, useNotifyRewardAmounts } from '../src/hooks';
 import { CustomTextField } from '../src/components/minorComponents/CustomTextField';
 import { formatUnits } from '@ethersproject/units';
 
 const Home: NextPage = () => {
   const { account } = useEthers();
-  // const Rutoken: string = '0x3d4DF72c7C70dfD127f5470ED7350fBd7bF63f7B';
-  // const testToken: string = '0x068F465A140131f6996Bbc5c5B7435A1a52c7DA2';
-  // const ruTokenBalance = useTokenBalance(Rutoken, account);
-  // const testTokenBalance = useTokenBalance(testToken, account);
-  // const rewardAddress = useSimpleFunction('rewardsToken');
-  // const rewardsDistributionAddress = useSimpleFunction('rewardsDistribution');
-  // const stakingTokenAddress = useSimpleFunction('stakingToken');
-  // const periodFinish = useSimpleFunction('periodFinish');
-  // const rewardRate = useSimpleFunction('rewardRate');
-  // const rewardsDuration = useSimpleFunction('rewardsDuration');
-  // const lastTimeUpdated = useSimpleFunction('lastUpdatedTime')
-  // const rewardsPerToken = useSimpleFunction('rewardPerTokenStored')
+  const Rutoken: string = '0x3d4DF72c7C70dfD127f5470ED7350fBd7bF63f7B';
+  const testToken: string = '0x068F465A140131f6996Bbc5c5B7435A1a52c7DA2';
+  const ruTokenBalance = useTokenBalance(Rutoken, account);
+  const testTokenBalance = useTokenBalance(testToken, account);
+  const rewardAddress = useSimpleFunction('rewardsToken');
+  const rewardsDistributionAddress = useSimpleFunction('rewardsDistribution');
+  const stakingTokenAddress = useSimpleFunction('stakingToken');
+  const periodFinish = useSimpleFunction('periodFinish');
+  const rewardRate = useSimpleFunction('rewardRate');
+  const rewardsDuration = useSimpleFunction('rewardsDuration');
+  const lastTimeUpdated = useSimpleFunction('lastUpdatedTime')
+  const rewardsPerToken = useSimpleFunction('rewardPerTokenStored')
   
 
-  // const [stakeAmount, setStakeAmount] = useState<
-  //   number | string | Array<number | string>
-  // >(0);
+  const [stakeAmount, setStakeAmount] = useState<
+    number | string | Array<number | string>
+  >(0);
 
-  // const [userBalance, setUserBalance] = useState<string>('');
-  // const [rewardAddressData, setRewardAddressData] = useState('');
+  const [userBalance, setUserBalance] = useState<string>('');
+  const [rewardsAmount, setRewardsAmount] = useState('');
 
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  //   if (userBalance) {
-  //     console.log(userBalance)
+    if (userBalance) {
+      console.log(userBalance)
 
-  //   }
-  // };
+    }
+  };
+
+  const { rewardAmount, rewardAmountState } = useNotifyRewardAmounts();
+
+  const handleNotifyRewardAmountSubmit = () => {
+    const amountAsWei = utils.parseEther(rewardsAmount.toString());
+    return rewardAmount(amountAsWei);
+  }
 
 
 
 
-  // const formatter = new Intl.NumberFormat('en-us', {
-  //   // this came from usedapp example. trying to figure out input formats
-  //   minimumFractionDigits: 4,
-  //   maximumFractionDigits: 4,
-  // });
+  const formatter = new Intl.NumberFormat('en-us', {
+    // this came from usedapp example. trying to figure out input formats
+    minimumFractionDigits: 4,
+    maximumFractionDigits: 4,
+  });
 
   const style = {
     marginTop: '.8em',
@@ -58,7 +65,7 @@ const Home: NextPage = () => {
 
   return (
     <Container maxWidth='lg'>
-      {/* <Box
+      <Box
         sx={{
           my: 4,
           display: 'flex',
@@ -86,7 +93,7 @@ const Home: NextPage = () => {
             <p> rewards distributor address: {rewardsDistributionAddress}</p>
           )}
 
-          {periodFinish && <p> period finish: {formatEther(periodFinish)}</p>}
+          {periodFinish && <p> period finish: {formatUnits(periodFinish)}</p>}
           {rewardRate && <p> reward rate: {formatEther(rewardRate)}</p>}
           {rewardsDuration && (
             <p> rewards duration: {formatEther(rewardsDuration)}</p>
@@ -115,12 +122,17 @@ const Home: NextPage = () => {
             </Button>
           </Box>
           <Box sx={{ marginBottom: '1em' }}>
-            <form>
-              <Button sx={style} variant='contained'>
-                notifyRewardAmount
-              </Button>
-              <CustomTextField variant='filled' label='amount' />
-            </form>
+            <Button
+              onClick={handleNotifyRewardAmountSubmit}
+              sx={style}
+              variant='contained'>
+              notifyRewardAmount
+            </Button>
+            <CustomTextField
+              onChange={(e) => setRewardsAmount(e.currentTarget.value)}
+              variant='filled'
+              label='amount'
+            />
           </Box>
           <Box sx={{ marginBottom: '1em' }}>
             <form>
@@ -160,7 +172,6 @@ const Home: NextPage = () => {
             </form>
           </Box>
 
-
           <Box sx={{ marginBottom: '1em' }}>
             <Button sx={style} variant='contained'>
               Reward Token Per Call
@@ -189,7 +200,7 @@ const Home: NextPage = () => {
             </form>
           </Box>
         </Box>
-      </Box> */}
+      </Box>
     </Container>
   );
 };

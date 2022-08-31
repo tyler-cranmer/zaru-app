@@ -82,7 +82,7 @@ export const ConnectWallet = (): JSX.Element => {
         <Button
           onClick={handleOpen}
           variant='contained'
-          sx={{ borderRadius: '10px' }}>
+          sx={{ borderRadius: '10px'}}>
           Connect Wallet
         </Button>
    
@@ -103,9 +103,9 @@ export const ConnectWallet = (): JSX.Element => {
             <Typography
               id='modal-modal-title'
               variant='h5'
-              color='primary'
+              color='black'
               sx={{ fontWeight: 500 }}>
-              Connect to a wallet
+              Connect a Wallet
             </Typography>
             <IconButton
               aria-label='close'
