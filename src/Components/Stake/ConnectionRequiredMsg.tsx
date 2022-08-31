@@ -50,9 +50,10 @@ export const ConnectionRequiredMsg = () => {
               display: 'flex',
               marginBottom: '1.5em',
               paddingBottom: '1em',
-              marginRight: '.5em'
+              marginRight: '.5em',
             }}>
-            <StyledFields>
+            <StyledFields sx={{ marginLeft: '8px' }}>
+              <Box sx={{ display: 'flex' }}></Box>
               <Typography variant='caption'> Staked OPI</Typography>
 
               <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
@@ -66,6 +67,7 @@ export const ConnectionRequiredMsg = () => {
                 0
               </Typography>
             </StyledFields>
+            <Box />
             <Button
               disabled
               variant='contained'
@@ -73,38 +75,38 @@ export const ConnectionRequiredMsg = () => {
                 borderRadius: '10px',
                 paddingLeft: '2em',
                 paddingRight: '2em',
-                margin: '2px',
+                margin: '1px',
               }}>
               Unstake
             </Button>
           </Box>
 
-            <Box sx={{ display: 'flex' }}>
-              <Box>
-                <CustomTextField
-                  label='Stake OPI Tokens'
-                  id='reddit-input'
-                  variant='filled'
-                  // type={'number'}
-                  defaultValue='0'
-                />
-              </Box>
-
-              <Button
-                disabled
-                type='submit'
-                variant='contained'
-                fullWidth
-                sx={{
-                  borderRadius: '10px',
-
-                  paddingLeft: '2.75em',
-                  paddingRight: '2.75em',
-                  margin: '1px',
-                }}>
-                Stake
-              </Button>
+          <Box sx={{ display: 'flex' }}>
+            <Box>
+              <CustomTextField
+                label='Stake OPI Tokens'
+                id='reddit-input'
+                variant='filled'
+                // type={'number'}
+                defaultValue='0'
+              />
             </Box>
+
+            <Button
+              disabled
+              type='submit'
+              variant='contained'
+              fullWidth
+              sx={{
+                borderRadius: '10px',
+
+                paddingLeft: '2.75em',
+                paddingRight: '2.75em',
+                margin: '1px',
+              }}>
+              Stake
+            </Button>
+          </Box>
           <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
             <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
 

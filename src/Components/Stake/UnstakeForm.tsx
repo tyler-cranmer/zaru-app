@@ -11,9 +11,7 @@ import {
 import {
   useBalanceOf,
   useStakeContractFunc,
-  useStakeTokens,
 } from '../../hooks';
-import { formatUnits } from '@ethersproject/units';
 import { formatEther } from 'ethers/lib/utils';
 import { useUnstakeTokens } from '../../hooks';
 
@@ -70,30 +68,32 @@ export const UnstakeForm = (): JSX.Element => {
             marginBottom: '1.5em',
             paddingBottom: '1em',
           }}>
-          <StyledFields>
-            <Typography variant='caption'> Staked OPI</Typography>
-            {stakedTokenBalance ? (
-              <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
-                {formatEther(stakedTokenBalance)}
-              </Typography>
-            ) : (
-              <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
-                0
-              </Typography>
-            )}
-          </StyledFields>
-          <StyledFields>
-            <Typography variant='caption'>RU Earned</Typography>
-            {rewardsBalance ? (
-              <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
-                {formatEther(rewardsBalance)}
-              </Typography>
-            ) : (
-              <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
-                0
-              </Typography>
-            )}
-          </StyledFields>
+          <Box sx={{ display: 'flex' }}>
+            <StyledFields sx={{marginLeft: "8px"}}>
+              <Typography variant='caption'> Staked OPI</Typography>
+              {stakedTokenBalance ? (
+                <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                  {formatEther(stakedTokenBalance)}
+                </Typography>
+              ) : (
+                <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                  0
+                </Typography>
+              )}
+            </StyledFields>
+            <StyledFields>
+              <Typography variant='caption'>RU Earned</Typography>
+              {rewardsBalance ? (
+                <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                  {formatEther(rewardsBalance)}
+                </Typography>
+              ) : (
+                <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                  0
+                </Typography>
+              )}
+            </StyledFields>
+          </Box>
           <Button
             onClick={handleUnstakeSubmit}
             disabled={isMining}
@@ -102,7 +102,7 @@ export const UnstakeForm = (): JSX.Element => {
               borderRadius: '10px',
               paddingLeft: '2em',
               paddingRight: '2em',
-              margin: '2px',
+              margin: '1px',
             }}>
             {isMining ? <CircularProgress size={26} /> : `Unstake`}
           </Button>

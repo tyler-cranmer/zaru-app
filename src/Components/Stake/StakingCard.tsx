@@ -147,12 +147,15 @@ export const StakingCard = () => {
             <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
               <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
               {walletBalance && (
-                <Typography
-                  variant='caption'
-                  sx={{ fontWeight: 'bold' }}
-                  gutterBottom>
-                  {formattedTokenBalance}
-                </Typography>
+                <>
+                  <Typography
+                    variant='caption'
+                    sx={{ fontWeight: 'bold' }}
+                    gutterBottom>
+                    {formattedTokenBalance}
+                  </Typography>
+                  <Typography variant='caption' >Max</Typography>
+                </>
               )}
             </Box>
           </CardActions>
