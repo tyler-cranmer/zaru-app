@@ -6,6 +6,7 @@ import {
   Typography,
   IconButton,
   Alert,
+  Snackbar
 } from '@mui/material';
 import { useEthers } from '@usedapp/core';
 import CloseIcon from '@mui/icons-material/Close';
@@ -17,42 +18,51 @@ export const ConnectWallet = (): JSX.Element => {
 
   const [open, setOpen] = useState(false);
   const [activateError, setActivateError] = useState('');
+  const [isError, setIsError] = useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
     if (error && account) {
       setActivateError(error.message);
+      setIsError(true)
       return;
     }
     setActivateError('');
+    setIsError(false)
   }, [error, account]);
 
   const ConnectMetaMask = async () => {
     setActivateError('');
+    setIsError(false);
     activateBrowserWallet();
   };
 
   const ConnectWalletLink = async () => {
     try {
       setActivateError('');
+      setIsError(false);
       await activate(walletlink);
     } catch (error: any) {
       setActivateError(error.message);
+      setIsError(true);
     }
   };
 
   const ConnectWalletConnect = async () => {
     try {
       setActivateError('');
+      setIsError(false);
       await activate(walletconnect);
     } catch (error: any) {
       setActivateError(error.message);
+      setIsError(true);
     }
   };
 
   const CloseAlert = () => {
     setActivateError('');
+    setIsError(false);
   };
 
   const style = {
@@ -74,18 +84,19 @@ export const ConnectWallet = (): JSX.Element => {
 
   return (
     <>
-      {activateError != '' ? (
-        <Alert onClose={CloseAlert} sx={{marginRight: '1em'}} severity='error'>
+      <Button
+        onClick={handleOpen}
+        variant='contained'
+        sx={{ borderRadius: '10px' }}>
+        Connect Wallet
+      </Button>
+
+      <Snackbar open={isError} autoHideDuration={5000} onClose={CloseAlert}>
+        <Alert onClose={CloseAlert} severity='warning'>
           {activateError}
         </Alert>
-      ) : null}
-        <Button
-          onClick={handleOpen}
-          variant='contained'
-          sx={{ borderRadius: '10px'}}>
-          Connect Wallet
-        </Button>
-   
+      </Snackbar>
+
       <Modal
         open={open}
         onClose={handleClose}

@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useEthers, useContractFunction } from '@usedapp/core';
 import StakingContract from "../../abis/staking_contract_test.json"
 import ERC20 from "../../abis/ERC20.json";
-import { utils, constants } from "ethers";
+import { utils } from "ethers";
 import { Contract } from "@ethersproject/contracts";
-import networkMapping from "../../abis/map.json"
+
 
 export const useStakeTokens = (tokenAddress: string) => {
     const { chainId } = useEthers();
