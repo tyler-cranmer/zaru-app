@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
-  Card,
-  CardActions,
-  CardContent,
   Box,
   Button,
   Typography,
@@ -11,23 +8,22 @@ import {
   CircularProgress,
   Alert,
 } from '@mui/material';
-import theme from '../../theme';
-import { UnstakeForm } from './UnstakeForm';
 import {
   useBalanceOf,
   useStakeContractFunc,
   useStakeTokens,
 } from '../../hooks';
-import { CustomTextField } from '../minorComponents/CustomTextField';
-import opiToken from '../../abis/opi_test.json';
-import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
-import { utils } from 'ethers';
 import { formatUnits } from '@ethersproject/units';
 import { formatEther } from 'ethers/lib/utils';
+import { useUnstakeTokens } from '../../hooks';
+import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
+import opiToken from '../../abis/opi_test.json';
+import { utils } from 'ethers';
+import { CustomTextField } from '../minorComponents/CustomTextField';
 
+export const StakeForm = (): JSX.Element => {
 
-export const StakingCard = () => {
-  const { account } = useEthers();
+      const { account } = useEthers();
   const { notifications } = useNotifications();
   const [stakeError, setStakeError] = useState(false);
   const [showErc20ApprovalSuccess, setShowErc20ApprovalSuccess] =
@@ -40,7 +36,9 @@ export const StakingCard = () => {
   const { address } = opiToken;
   const opiTokenAddress = address;
 
+  const stakedTokenBalance = useBalanceOf(account);
   const walletBalance = useTokenBalance(opiTokenAddress, account);
+  const rewardsEarned = useStakeContractFunc('earned', account);
 
   const formattedTokenBalance: number = walletBalance
     ? parseFloat(formatUnits(walletBalance, 18))
@@ -92,33 +90,10 @@ export const StakingCard = () => {
   const isMining = stakeTokensState.status === 'Mining';
 
   const hasZeroBalance = formattedTokenBalance === 0;
-  const hasZeroAmountSelected = parseFloat(amount.toString()) === 0;
-
-  return (
-    <>
-      <Card
-        sx={{
-          backgroundColor: theme.palette.secondary.main,
-          borderRadius: '20px',
-        }}>
-        <Box pl='3em' pr='1.5em'>
-          <CardContent>
-            <Typography
-              variant='h5'
-              component='h1'
-              color='text.primary'
-              pt='.5em'
-              gutterBottom>
-              Stake Your $OPI to Earn $RU
-            </Typography>
-          </CardContent>
-          <CardActions
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-            }}>
-            <UnstakeForm />
+    const hasZeroAmountSelected = parseFloat(amount.toString()) === 0;
+    
+    return (
+        <>
             <Box sx={{ display: 'flex' }}>
               <Box>
                 <CustomTextField
@@ -135,7 +110,7 @@ export const StakingCard = () => {
 
               <Button
                 onClick={handleStakeSubmit}
-                disabled={isMining || hasZeroAmountSelected}
+                // disabled={isMining || hasZeroAmountSelected}
                 variant='contained'
                 fullWidth
                 sx={{
@@ -161,26 +136,6 @@ export const StakingCard = () => {
                 </Typography>
               )}
             </Box>
-          </CardActions>
-        </Box>
-      </Card>
-      <Snackbar
-        open={showErc20ApprovalSuccess}
-        autoHideDuration={5000}
-        onClose={handleCloseSnack}>
-        <Alert onClose={handleCloseSnack} severity='success'>
-          ERC-20 token transfer approved successfully! Waiting to initiate the
-          staking transfer.
-        </Alert>
-      </Snackbar>
-      <Snackbar
-        open={showStakeTokensSuccess}
-        autoHideDuration={5000}
-        onClose={handleCloseSnack}>
-        <Alert onClose={handleCloseSnack} severity='success'>
-          Tokens staked successfully!
-        </Alert>
-      </Snackbar>
-    </>
-  );
-};
+        </>
+    )
+}
