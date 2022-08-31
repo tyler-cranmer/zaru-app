@@ -157,9 +157,9 @@ export const StakingCard = () => {
               </StyledFields>
               <StyledFields>
                 <Typography variant='caption'>RU Earned</Typography>
-                {stakedTokenBalance ? (
+                {rewardsEarned ? (
                   <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
-                    {formatEther(stakedTokenBalance)}
+                    {formatEther(rewardsEarned)}
                   </Typography>
                 ) : (
                   <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
@@ -244,7 +244,7 @@ export const StakingCard = () => {
         autoHideDuration={5000}
         onClose={handleCloseSnack}>
         <Alert onClose={handleCloseSnack} severity='success'>
-          ERC-20 token transfer approved successfully! Now approve the 2nd tx to
+          ERC-20 token transfer approved successfully! Waiting to 
           initiate the staking transfer.
         </Alert>
       </Snackbar>
