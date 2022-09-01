@@ -14,7 +14,7 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
-  const { chainId, error } = useEthers();
+  const { error } = useEthers();
   const [showNetworkError, setShowNetworkError] = useState(false);
 
   const handleCloseNetworkError = (

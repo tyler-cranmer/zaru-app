@@ -9,21 +9,16 @@ import {
   Snackbar,
   CircularProgress,
   Alert,
-  styled,
-  ButtonProps,
 } from '@mui/material';
 import theme from '../../theme';
 import { UnstakeForm } from './UnstakeForm';
-import {
-  useStakeTokens,
-} from '../../hooks';
+import { useStakeTokens } from '../../hooks';
 import { MaxButton } from '../minorComponents/MaxSubmitButton';
 import { CustomTextField } from '../minorComponents/CustomTextField';
 import opiToken from '../../abis/opi_test.json';
 import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
 import { utils } from 'ethers';
-import { formatUnits } from '@ethersproject/units';
-
+import { formatEther } from 'ethers/lib/utils';
 
 export const StakingCard = () => {
   const { account } = useEthers();
@@ -41,15 +36,18 @@ export const StakingCard = () => {
 
   const walletBalance = useTokenBalance(opiTokenAddress, account);
 
-  const formattedTokenBalance: number = walletBalance
-    ? parseFloat(formatUnits(walletBalance, 18))
-    : 0;
+  // const formattedTokenBalance: number = walletBalance
+  //   ? parseFloat(formatUnits(walletBalance, 18))
+  //   : 0;
 
-  
+  const formattedTokenBalance: string | number = walletBalance
+    ? formatEther(walletBalance)
+    : 0.0;
+
   const { send: stakeTokensSend, state: stakeTokensState } =
     useStakeTokens(opiTokenAddress);
 
-  // Submitting the stake token hook.  
+  // Submitting the stake token hook.
   const handleStakeSubmit = () => {
     setStakeError(false);
     if (parseFloat(amount.toString()) === 0) {
@@ -62,13 +60,12 @@ export const StakingCard = () => {
 
   const handleMaxSubmit = () => {
     setAmount(formattedTokenBalance);
-  }
+  };
 
   const handleCloseSnack = () => {
     showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(false);
     showStakeTokensSuccess && setShowStakeTokensSuccess(false);
   };
-
 
   // Tracking the states of approving erc20 transfer and staking the tokens
   useEffect(() => {
@@ -99,7 +96,6 @@ export const StakingCard = () => {
 
   const hasZeroBalance = formattedTokenBalance === 0;
   const hasZeroAmountSelected = parseFloat(amount.toString()) === 0;
-
 
   return (
     <>
@@ -137,9 +133,7 @@ export const StakingCard = () => {
                   InputProps={{
                     inputProps: { min: 0, max: formattedTokenBalance },
                     disableUnderline: true,
-                    endAdornment: (
-                      <MaxButton onClick={handleMaxSubmit} />
-                    ),
+                    endAdornment: <MaxButton onClick={handleMaxSubmit} />,
                   }}
                   value={amount}
                   error={stakeError}
