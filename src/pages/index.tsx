@@ -8,8 +8,7 @@ import {
   Community,
   Blogs,
   Explore,
-
-} from '../src/components';
+} from '../components';
 
 const Home: NextPage = () => {
   return (

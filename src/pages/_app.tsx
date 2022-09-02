@@ -4,18 +4,16 @@ import { AppProps } from 'next/app';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import theme from '../src/theme';
-import createEmotionCache from '../src/createEmotionCache';
-import Layout from '../src/layouts/Layout';
-import '../src/styles.css';
+import theme from '../theme';
+import createEmotionCache from '../createEmotionCache';
+import Layout from '../layouts/Layout';
+import '../styles.css';
 
 import {
   DAppProvider,
   Config,
   ChainId,
   OptimismGoerli,
-  Optimism
-
 } from '@usedapp/core';
 
 // Client-side cache, shared for the whole session of the user in the browser.

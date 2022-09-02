@@ -16,8 +16,8 @@ import {
   useBalanceOf,
   useSimpleFunction,
   useNotifyRewardAmounts,
-} from '../src/hooks';
-import { CustomTextField } from '../src/components/minorComponents/CustomTextField';
+} from '../hooks';
+import { CustomTextField } from '../components/minorComponents/CustomTextField';
 import { formatUnits } from '@ethersproject/units';
 function test() {
    const { account } = useEthers();
