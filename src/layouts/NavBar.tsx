@@ -11,7 +11,7 @@ import {
   MenuItem,
 } from '@mui/material';
 import theme from '../theme';
-import ConnectWallet from '../components/ConnectWallet';
+import ConnectWallet from './ConnectWallet';
 import { useEthers} from '@usedapp/core';
 import Image from 'next/image';
 import { Container } from '@mui/system';
