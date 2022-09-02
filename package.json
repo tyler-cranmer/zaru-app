@@ -27,6 +27,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-icons": "^4.4.0",
     "typechain": "^8.1.0"
   },
   "devDependencies": {

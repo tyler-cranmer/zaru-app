@@ -16,6 +16,7 @@ export const Blogs = (): JSX.Element => {
             gutterBottom>
             CHECK OUT OUR BLOGS
           </Typography>
+          <Typography>I should create cards to display the blogs</Typography>
         </Box>
       </Container>
     </>

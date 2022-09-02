@@ -61,8 +61,9 @@ export const ConnectWallet = (): JSX.Element => {
   };
 
   const CloseAlert = () => {
-    setActivateError('');
     setIsError(false);
+    setActivateError('');
+    
   };
 
   const style = {
@@ -91,7 +92,7 @@ export const ConnectWallet = (): JSX.Element => {
         Connect Wallet
       </Button>
 
-      <Snackbar open={isError} autoHideDuration={5000} onClose={CloseAlert}>
+      <Snackbar open={isError} autoHideDuration={500} onClose={CloseAlert}>
         <Alert onClose={CloseAlert} severity='warning'>
           {activateError}
         </Alert>

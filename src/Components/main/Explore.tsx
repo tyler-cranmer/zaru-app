@@ -13,18 +13,14 @@ export const Explore = (): JSX.Element => {
             display: 'flex',
             justifyContent: 'center',
           }}>
-          <Box
-            mt={2}
-            pt={2}
-            mb={4}
-            sx={{ display: 'flex', flexDirection: 'row' }}>
-            <Box >
+          <Box mt={4} mb={4} sx={{ display: 'flex', flexDirection: 'row' }}>
+            <Box pr={9}>
               <Typography variant='h5'>Explore Zaru Finance</Typography>
               <Typography variant='body1'>
                 Start building your wealth with $OPI
               </Typography>
             </Box>
-            <Box>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Button variant='contained'>Launch App</Button>
             </Box>
           </Box>

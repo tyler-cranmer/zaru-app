@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
+import { Footer } from './Footer';
 import { Snackbar, Alert, Typography } from '@mui/material';
 import { useEthers } from '@usedapp/core';
+
 
 export type Token = {
   image: string;
@@ -34,6 +36,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
    * We can inspect the name of this error and conditionally show a notification
    * that the user is connected to the wrong network.
    */
+
   useEffect(() => {
       if (error && error.name === 'ChainIdError') {
       !showNetworkError && setShowNetworkError(true);
@@ -46,6 +49,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
     <>
       <Header />
       <main>{children}</main>
+      <Footer/>
       <Snackbar
         open={showNetworkError}
         autoHideDuration={5000}

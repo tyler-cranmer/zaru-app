@@ -1,24 +1,58 @@
 import React, {useState, useEffect} from 'react';
 import type { NextPage } from 'next';
-import { Container, Typography, Box, Stack } from '@mui/material';
+import { Container, Typography, Box, Stack, Button } from '@mui/material';
 import { StakingCard } from '../src/components';
 import { ConnectionRequiredMsg } from '../src/components';
 import theme from '../src/theme';
 import { useEthers } from '@usedapp/core';
 
 const Stake: NextPage = () => {
-  const { account, error } = useEthers();
+  const { account } = useEthers();
   const isConnected = account !== undefined;
-  const [showNetworkError, setShowNetworkError] = useState(false);
-
 
   return (
     <>
       <Container
         maxWidth='lg'
-        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {isConnected ? ( <StakingCard />):(<ConnectionRequiredMsg/>)}
-       
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh'}}>
+        <Box
+          sx={{
+            my: 5,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Box mb={2} pr={2}>
+            <Button href='/learn'>
+              <Typography
+                variant='h4'
+                sx={{ color: theme.palette.grey[700], fontWeight: 'bold' }}>
+                LEARN
+              </Typography>
+            </Button>
+          </Box>
+          <Box
+            sx={{
+              background: 'black',
+              height: '3.5em',
+              width: '2px',
+              marginBottom: '0.70em',
+            }}
+          />
+          <Box mb={2} pl={2}>
+            <Button href='/stake' variant='text'>
+              <Typography
+                variant='h4'
+                component='h1'
+                sx={{ color: theme.palette.text.primary, fontWeight: 'bold' }}>
+                STAKE
+              </Typography>
+            </Button>
+          </Box>
+        </Box>
+        {isConnected ? <StakingCard /> : <ConnectionRequiredMsg />}
+
         <Stack
           mt={2}
           direction='column'

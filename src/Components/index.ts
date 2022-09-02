@@ -9,3 +9,5 @@ export { Products } from './main/Products';
 export { Community } from './main/Community';
 export { Blogs } from './main/Blogs';
 export { Explore } from './main/Explore';
+export { Footer } from '../layouts/Footer'
+export {PurchaseCard} from "./tokens/PurchaseCard"
