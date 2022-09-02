@@ -8,7 +8,7 @@ import {
   Typography,
   styled,
 } from '@mui/material';
-import { CustomTextField } from '../minorComponents/CustomTextField';
+import { CustomTextField } from '../minorComponents';
 import theme from '../../theme';
 
 const StyledFields = styled(Box)({

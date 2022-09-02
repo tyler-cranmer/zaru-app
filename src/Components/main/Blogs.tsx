@@ -1,6 +1,6 @@
 import { Box, Typography, Container } from '@mui/material';
 
-export const Blogs = (): JSX.Element => {
+function Blogs(): JSX.Element {
   return (
     <>
       <Container maxWidth='lg' sx={{ height: '200px' }}>
@@ -21,4 +21,6 @@ export const Blogs = (): JSX.Element => {
       </Container>
     </>
   );
-};
+}
+
+export default Blogs;

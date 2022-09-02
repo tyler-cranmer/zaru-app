@@ -1,7 +1,7 @@
 import { Box, Typography, Container, Button } from '@mui/material';
 import theme from '../../theme';
 
-export const Explore = (): JSX.Element => {
+function Explore(): JSX.Element {
   return (
     <>
       <Container
@@ -28,4 +28,6 @@ export const Explore = (): JSX.Element => {
       </Container>
     </>
   );
-};
+}
+
+export default Explore;

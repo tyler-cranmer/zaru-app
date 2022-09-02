@@ -1,17 +1,16 @@
-import { Box, Typography, Container, Button, styled } from '@mui/material';;
+import { Box, Typography, Container, Button, styled } from '@mui/material';
 import theme from '../../theme';
-
 
 const InverseButton = styled(Button)({
   '&:hover': {
     backgroundColor: theme.palette.primary.main,
     borderColor: theme.palette.primary.main,
-    color: "white",
+    color: 'white',
     boxShadow: 'none',
   },
 });
 
-export const Community = (): JSX.Element => {
+function Community(): JSX.Element {
   return (
     <>
       <Container maxWidth='lg' sx={{ height: '300px' }}>
@@ -49,4 +48,6 @@ export const Community = (): JSX.Element => {
       </Container>
     </>
   );
-};
+}
+
+export default Community;

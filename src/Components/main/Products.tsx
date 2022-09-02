@@ -7,7 +7,7 @@ const cardOneContent: string =
 const cardTwoContent: string =
   'Early supports of Zaru can earn $RU tokens by buying and staking their $OPI token.';
 
-export const Products = (): JSX.Element => {
+function Products(): JSX.Element {
   return (
     <>
       <Box sx={{ borderTop: '1px solid grey' }}>
@@ -74,3 +74,5 @@ export const Products = (): JSX.Element => {
     </>
   );
 };
+
+export default Products;

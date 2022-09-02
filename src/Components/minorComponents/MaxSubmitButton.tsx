@@ -3,19 +3,19 @@ import { Button, styled, ButtonProps } from '@mui/material';
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
   color: 'black',
   borderColor: 'black',
-  
+
   backgroundColor: theme.palette.grey[400],
   '&:hover': {
     backgroundColor: theme.palette.grey[500],
     borderColor: 'black',
-    },
+  },
 }));
 
 type Props = {
   onClick?: React.MouseEventHandler;
 };
 
-export const MaxButton = ({ onClick }: Props) => {
+function MaxButton({ onClick }: Props) {
   return (
     <>
       <ColorButton
@@ -28,4 +28,6 @@ export const MaxButton = ({ onClick }: Props) => {
       </ColorButton>
     </>
   );
-};
+}
+
+export default MaxButton;

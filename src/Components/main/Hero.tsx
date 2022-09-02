@@ -1,7 +1,7 @@
 import { Box, Button, Typography, Container } from '@mui/material';
 import Image from 'next/image';
 
-export const Hero = () => {
+function Hero() {
   return (
     <>
       <Container
@@ -19,7 +19,7 @@ export const Hero = () => {
             maxWidth: '700px',
             margin: ' 0 auto',
           }}>
-          <Typography  gutterBottom sx={{ fontWeight: '400', fontSize: 64}}>
+          <Typography gutterBottom sx={{ fontWeight: '400', fontSize: 64 }}>
             The leader in tokenized asset strategies
           </Typography>
         </Box>
@@ -36,4 +36,6 @@ export const Hero = () => {
       </Container>
     </>
   );
-};
+}
+
+export default Hero;

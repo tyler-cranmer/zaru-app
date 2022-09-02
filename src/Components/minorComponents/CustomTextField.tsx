@@ -1,7 +1,6 @@
 import { TextField, TextFieldProps, styled } from "@mui/material";
 
-
-export const CustomTextField = styled((props: TextFieldProps) => (
+const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
     {...props}
   />
@@ -39,3 +38,4 @@ export const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
+export default CustomTextField;
