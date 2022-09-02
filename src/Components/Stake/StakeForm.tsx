@@ -19,7 +19,7 @@ import { useUnstakeTokens } from '../../hooks';
 import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
 import opiToken from '../../abis/opi_test.json';
 import { utils } from 'ethers';
-import { CustomTextField } from '../minorComponents/CustomTextField';
+import { CustomTextField } from '../minorComponents';
 
 export const StakeForm = (): JSX.Element => {
   const { account } = useEthers();
