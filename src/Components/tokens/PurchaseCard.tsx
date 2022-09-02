@@ -12,13 +12,10 @@ import {
   InputAdornment,
 } from '@mui/material';
 import theme from '../../theme';
-import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
 import { CustomChip } from './CustomChip';
 import { IoSwapVertical } from 'react-icons/io5';
 
-import Image from 'next/image';
-const ethereum_url: string =
-  'https://ethereum.org/static/a183661dd70e0e5c70689a0ec95ef0ba/13c43/eth-diamond-purple.png';
+
 export const PurchaseCard = () => {
   return (
     <>
