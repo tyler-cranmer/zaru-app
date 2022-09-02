@@ -21,7 +21,7 @@ const StyledFields = styled(Box)({
   padding: '8px 12px 8px 12px',
 });
 
-export const ConnectionRequiredMsg = () => {
+export const ConnectionRequiredMsg = (): JSX.Element => {
   return (
     <>
       <Card
