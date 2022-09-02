@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { useEthers } from '@usedapp/core';
 import { Container, Typography, Box } from '@mui/material';
-import { PurchaseCard } from '../components';
+import { PurchaseCard } from '../components/tokens/PurchaseCard';
 
 
 const Products: NextPage = () => {
