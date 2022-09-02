@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from './Header';
+import NavBar from './NavBar';
 import { Footer } from './Footer';
 import { Snackbar, Alert, Typography } from '@mui/material';
 import { useEthers } from '@usedapp/core';
@@ -47,7 +47,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
 
   return (
     <>
-      <Header />
+      <NavBar />
       <main>{children}</main>
       <Footer/>
       <Snackbar

@@ -22,7 +22,7 @@ function truncateHash(hash: string, length = 38): string {
   return hash.replace(hash.substring(6, length), '...')
 }
 
-function Header() {
+function NavBar() {
 
   const { activateBrowserWallet, account, deactivate, error } = useEthers();
   const isConnected = account !== undefined;
@@ -121,4 +121,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default NavBar;
