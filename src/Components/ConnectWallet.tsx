@@ -13,7 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { walletlink, walletconnect } from '../util/connectors';
 import Image from 'next/image';
 
-export const ConnectWallet = (): JSX.Element => {
+function ConnectWallet(): JSX.Element {
   const { activateBrowserWallet, activate, account, error } = useEthers();
 
   const [open, setOpen] = useState(false);
@@ -183,3 +183,4 @@ export const ConnectWallet = (): JSX.Element => {
   );
 }
 
+export default ConnectWallet;
