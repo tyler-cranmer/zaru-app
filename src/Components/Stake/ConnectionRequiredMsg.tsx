@@ -23,106 +23,108 @@ const StyledFields = styled(Box)({
 
 export const ConnectionRequiredMsg = () => {
   return (
-    <Card
-      sx={{
-        backgroundColor: theme.palette.secondary.main,
-        borderRadius: '20px',
-      }}>
-      <Box pl='3em' pr='1.5em'>
-        <CardContent>
-          <Typography
-            variant='h5'
-            component='h1'
-            color='text.primary'
-            pt='.5em'
-            gutterBottom>
-            Stake Your $OPI to Earn $RU
-          </Typography>
-        </CardContent>
-        <CardActions
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-          }}>
-          <Box
+    <>
+      <Card
+        sx={{
+          backgroundColor: theme.palette.secondary.main,
+          borderRadius: '20px',
+        }}>
+        <Box pl='3em' pr='1.5em'>
+          <CardContent>
+            <Typography
+              variant='h5'
+              component='h1'
+              color='text.primary'
+              pt='.5em'
+              gutterBottom>
+              Stake Your $OPI to Earn $RU
+            </Typography>
+          </CardContent>
+          <CardActions
             sx={{
               display: 'flex',
-              marginBottom: '1.5em',
-              paddingBottom: '1em',
-              marginRight: '.5em',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
             }}>
-            <StyledFields sx={{ marginLeft: '8px' }}>
-              <Box sx={{ display: 'flex' }}></Box>
-              <Typography variant='caption'> Staked OPI</Typography>
-
-              <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
-                0
-              </Typography>
-            </StyledFields>
-            <StyledFields>
-              <Typography variant='caption'>RU Earned</Typography>
-
-              <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
-                0
-              </Typography>
-            </StyledFields>
-            <Box />
-            <Button
-              disabled
-              variant='contained'
+            <Box
               sx={{
-                borderRadius: '10px',
-                paddingLeft: '2em',
-                paddingRight: '2em',
-                margin: '1px',
+                display: 'flex',
+                marginBottom: '1.5em',
+                paddingBottom: '1em',
+                marginRight: '.5em',
               }}>
-              Unstake
-            </Button>
-          </Box>
+              <StyledFields sx={{ marginLeft: '8px' }}>
+                <Box sx={{ display: 'flex' }}></Box>
+                <Typography variant='caption'> Staked OPI</Typography>
 
-          <Box sx={{ display: 'flex' }}>
-            <Box>
-              <CustomTextField
-                label='Stake OPI Tokens'
-                id='reddit-input'
-                variant='filled'
-                type={'number'}
-                InputProps={{
-                  inputProps: { min: 0, max:0 },
-                  disableUnderline: true,
-                }}
-                defaultValue='0'
-              />
+                <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                  0
+                </Typography>
+              </StyledFields>
+              <StyledFields>
+                <Typography variant='caption'>RU Earned</Typography>
+
+                <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
+                  0
+                </Typography>
+              </StyledFields>
+              <Box />
+              <Button
+                disabled
+                variant='contained'
+                sx={{
+                  borderRadius: '10px',
+                  paddingLeft: '2em',
+                  paddingRight: '2em',
+                  margin: '1px',
+                }}>
+                Unstake
+              </Button>
             </Box>
 
-            <Button
-              disabled
-              type='submit'
-              variant='contained'
-              fullWidth
-              sx={{
-                borderRadius: '10px',
+            <Box sx={{ display: 'flex' }}>
+              <Box>
+                <CustomTextField
+                  label='Stake OPI Tokens'
+                  id='reddit-input'
+                  variant='filled'
+                  type={'number'}
+                  InputProps={{
+                    inputProps: { min: 0, max: 0 },
+                    disableUnderline: true,
+                  }}
+                  defaultValue='0'
+                />
+              </Box>
 
-                paddingLeft: '2.75em',
-                paddingRight: '2.75em',
-                margin: '1px',
-              }}>
-              Stake
-            </Button>
-          </Box>
-          <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
-            <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
+              <Button
+                disabled
+                type='submit'
+                variant='contained'
+                fullWidth
+                sx={{
+                  borderRadius: '10px',
 
-            <Typography
-              variant='caption'
-              sx={{ fontWeight: 'bold' }}
-              gutterBottom>
-              0
-            </Typography>
-          </Box>
-        </CardActions>
-      </Box>
-    </Card>
+                  paddingLeft: '2.75em',
+                  paddingRight: '2.75em',
+                  margin: '1px',
+                }}>
+                Stake
+              </Button>
+            </Box>
+            <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
+              <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
+
+              <Typography
+                variant='caption'
+                sx={{ fontWeight: 'bold' }}
+                gutterBottom>
+                0
+              </Typography>
+            </Box>
+          </CardActions>
+        </Box>
+      </Card>
+    </>
   );
 };

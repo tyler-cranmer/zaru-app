@@ -7,60 +7,59 @@ import { Contract } from "@ethersproject/contracts";
 
 
 export const useStakeTokens = (tokenAddress: string) => {
-    const { chainId } = useEthers();
-    const { abi, address } = StakingContract;
-    // const stakingContractAddress = chainId
-    //   ? networkMapping[String(chainId)]['Farm'][0]
-    //   : constants.AddressZero;
-        const stakingContractAddress = address
-    const stakingContractInterface = new utils.Interface(abi)
-    const stakingContract = new Contract(
-        stakingContractAddress,
-        stakingContractInterface
-    )
+  const { chainId } = useEthers();
+  const { abi, address } = StakingContract;
+  // const stakingContractAddress = chainId
+  //   ? networkMapping[String(chainId)]['Farm'][0]
+  //   : constants.AddressZero;
+  const stakingContractAddress = address;
+  const stakingContractInterface = new utils.Interface(abi);
+  const stakingContract = new Contract(
+    stakingContractAddress,
+    stakingContractInterface
+  );
 
-    const { send: stakeTokensSend, state: stakeTokensState } =
-      useContractFunction(stakingContract, 'stake', {
-        transactionName: 'Stake tokens',
-      });
+  const { send: stakeTokensSend, state: stakeTokensState } =
+    useContractFunction(stakingContract, 'stake', {
+      transactionName: 'Stake tokens',
+    });
 
-    const erc20Interface = new utils.Interface(ERC20.abi)
-    const tokenContract = new Contract(tokenAddress, erc20Interface)
+  const erc20Interface = new utils.Interface(ERC20.abi);
+  const tokenContract = new Contract(tokenAddress, erc20Interface);
 
-    const { send: approveErc20Send, state: approveErc20State } = useContractFunction(tokenContract, "approve", {
-        transactionName: "Approve ERC20 transfer",
-    })
+  const { send: approveErc20Send, state: approveErc20State } =
+    useContractFunction(tokenContract, 'approve', {
+      transactionName: 'Approve ERC20 transfer',
+    });
 
-    const [amountToStake, setAmountToStake] = useState("0")
+  const [amountToStake, setAmountToStake] = useState('0');
 
-    useEffect(() => {
-        if (approveErc20State.status === 'Success') {
-    
-            stakeTokensSend(amountToStake);
+  useEffect(() => {
+    if (approveErc20State.status === 'Success') {
+      stakeTokensSend(amountToStake);
 
-        // the dependency arry
-        // the code inside the useEffect anytime
-        // anything in this list changes
-        // if you want something to run when the component first runs
-        // you just have a blank list
-      }
-    }, [approveErc20State, amountToStake]);
-
-    const send = (amount: string) => {
-        
-        setAmountToStake(amount)
-        return approveErc20Send(stakingContractAddress, amount);
+      // the dependency arry
+      // the code inside the useEffect anytime
+      // anything in this list changes
+      // if you want something to run when the component first runs
+      // you just have a blank list
     }
+  }, [approveErc20State, amountToStake]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const [state, setState] = useState(approveErc20State)
+  const send = (amount: string) => {
+    setAmountToStake(amount);
+    return approveErc20Send(stakingContractAddress, amount);
+  };
 
-    useEffect(() => {
-        if (approveErc20State.status === "Success") {
-            setState(stakeTokensState)
-        } else {
-            setState(approveErc20State)
-        }
-    }, [approveErc20State, stakeTokensState])
+  const [state, setState] = useState(approveErc20State);
 
-    return {send, state}
+  useEffect(() => {
+    if (approveErc20State.status === 'Success') {
+      setState(stakeTokensState);
+    } else {
+      setState(approveErc20State);
+    }
+  }, [approveErc20State, stakeTokensState]);
+
+  return { send, state };
 }

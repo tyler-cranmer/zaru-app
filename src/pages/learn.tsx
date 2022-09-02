@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import { Container, Typography, Box, Stack, Button } from '@mui/material';
 import theme from '../theme';
 
+const line: string = "The Optimism ExosystemIndex (OPI) fives yourr exposure to cutting edge applications on one of Ethereum's most primising L2s."
 const Learn: NextPage = () => {
   return (
     <>
@@ -70,8 +71,7 @@ const Learn: NextPage = () => {
               alignItems: 'baseline',
             }}>
             <Typography variant='body1' sx={{ mb: '1em', pb: '1em' }}>
-              The Optimism ExosystemIndex (OPI) fives yourr exposure to cutting
-              edge applications on one of Ethereum's most primising L2s.
+            {line}
             </Typography>
             <Typography variant='body1' sx={{ mb: '1em', pb: '1em' }}>
               Buy OPI in 1-click and never worry about keeping pace with the

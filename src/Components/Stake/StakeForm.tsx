@@ -22,8 +22,7 @@ import { utils } from 'ethers';
 import { CustomTextField } from '../minorComponents/CustomTextField';
 
 export const StakeForm = (): JSX.Element => {
-
-      const { account } = useEthers();
+  const { account } = useEthers();
   const { notifications } = useNotifications();
   const [stakeError, setStakeError] = useState(false);
   const [showErc20ApprovalSuccess, setShowErc20ApprovalSuccess] =
@@ -46,10 +45,9 @@ export const StakeForm = (): JSX.Element => {
 
   const { send: stakeTokensSend, state: stakeTokensState } =
     useStakeTokens(opiTokenAddress);
-  
 
   const handleStakeSubmit = () => {
-     setStakeError(false);
+    setStakeError(false);
     if (parseFloat(amount.toString()) === 0) {
       setStakeError(true);
     } else {
@@ -90,52 +88,52 @@ export const StakeForm = (): JSX.Element => {
   const isMining = stakeTokensState.status === 'Mining';
 
   const hasZeroBalance = formattedTokenBalance === 0;
-    const hasZeroAmountSelected = parseFloat(amount.toString()) === 0;
-    
-    return (
-        <>
-            <Box sx={{ display: 'flex' }}>
-              <Box>
-                <CustomTextField
-                  onChange={(e) => setAmount(e.currentTarget.value)}
-                  label='Stake OPI Tokens'
-                  id='reddit-input'
-                  variant='filled'
-                  type={'number'}
-                  value={amount}
-                  error={stakeError}
-                  disabled={isMining || hasZeroBalance}
-                />
-              </Box>
+  const hasZeroAmountSelected = parseFloat(amount.toString()) === 0;
 
-              <Button
-                onClick={handleStakeSubmit}
-                // disabled={isMining || hasZeroAmountSelected}
-                variant='contained'
-                fullWidth
-                sx={{
-                  borderRadius: '10px',
+  return (
+    <>
+      <Box sx={{ display: 'flex' }}>
+        <Box>
+          <CustomTextField
+            onChange={(e) => setAmount(e.currentTarget.value)}
+            label='Stake OPI Tokens'
+            id='reddit-input'
+            variant='filled'
+            type={'number'}
+            value={amount}
+            error={stakeError}
+            disabled={isMining || hasZeroBalance}
+          />
+        </Box>
 
-                  paddingLeft: '2.75em',
-                  paddingRight: '2.75em',
-                  margin: '1px',
-                }}>
-                {isMining ? <CircularProgress size={26} /> : 'Stake'}
-              </Button>
-            </Box>
+        <Button
+          onClick={handleStakeSubmit}
+          // disabled={isMining || hasZeroAmountSelected}
+          variant='contained'
+          fullWidth
+          sx={{
+            borderRadius: '10px',
 
-            <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
-              <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
-              {walletBalance && (
-                <Typography
-                  variant='caption'
-                  sx={{ fontWeight: 'bold' }}
-                  gutterBottom>
-                  {' '}
-                  {formattedTokenBalance}
-                </Typography>
-              )}
-            </Box>
-        </>
-    )
-}
+            paddingLeft: '2.75em',
+            paddingRight: '2.75em',
+            margin: '1px',
+          }}>
+          {isMining ? <CircularProgress size={26} /> : 'Stake'}
+        </Button>
+      </Box>
+
+      <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
+        <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
+        {walletBalance && (
+          <Typography
+            variant='caption'
+            sx={{ fontWeight: 'bold' }}
+            gutterBottom>
+            {' '}
+            {formattedTokenBalance}
+          </Typography>
+        )}
+      </Box>
+    </>
+  );
+};
