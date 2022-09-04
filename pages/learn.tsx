@@ -1,7 +1,7 @@
 import React from 'react';
 import type { NextPage } from 'next';
 import { Container, Typography, Box, Stack, Button } from '@mui/material';
-import theme from '../theme';
+import theme from '../src/theme';
 
 const line: string = "The Optimism ExosystemIndex (OPI) fives yourr exposure to cutting edge applications on one of Ethereum's most primising L2s."
 const Learn: NextPage = () => {

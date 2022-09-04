@@ -19,6 +19,6 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx","src"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx","src", "pages"],
   "exclude": ["node_modules"]
 }
