@@ -55,9 +55,7 @@ export default function MyApp(props: MyAppProps) {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <Layout>
-            <>
               <Component {...pageProps} />
-            </>
           </Layout>
         </ThemeProvider>
       </CacheProvider>
