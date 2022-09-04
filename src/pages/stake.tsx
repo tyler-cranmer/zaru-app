@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import type { NextPage } from 'next';
 import { Container, Typography, Box, Stack, Button } from '@mui/material';
-import { StakingCard } from '../components/stake/StakingCard';
+import { StakingCard } from '../components/stake/stakingCard';
 import { ConnectionRequiredMsg } from '../components/stake/ConnectionRequiredMsg';
 import theme from '../theme';
 import { useEthers } from '@usedapp/core';
