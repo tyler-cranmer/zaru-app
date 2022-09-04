@@ -16,7 +16,7 @@ import { CustomChip } from './CustomChip';
 import { IoSwapVertical } from 'react-icons/io5';
 
 
-export const PurchaseCard = () => {
+export const PurchaseCard = (): JSX.Element => {
   return (
     <>
       <Card

@@ -15,7 +15,7 @@ type Props = {
   onClick?: React.MouseEventHandler;
 };
 
-function MaxButton({ onClick }: Props) {
+function MaxButton({ onClick }: Props): JSX.Element {
   return (
     <>
       <ColorButton

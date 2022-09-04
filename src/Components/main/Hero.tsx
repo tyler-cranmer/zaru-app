@@ -1,7 +1,7 @@
 import { Box, Button, Typography, Container } from '@mui/material';
 import Image from 'next/image';
 
-function Hero() {
+function Hero(): JSX.Element {
   return (
     <>
       <Container

@@ -20,7 +20,7 @@ import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
 import { utils } from 'ethers';
 import { formatEther } from 'ethers/lib/utils';
 
-export const StakingCard = () => {
+export const StakingCard = (): JSX.Element => {
   const { account } = useEthers();
   const { notifications } = useNotifications();
   const [stakeError, setStakeError] = useState(false);

@@ -7,10 +7,22 @@ export interface CardProps {
     buttonTitle: string;
 }
 
-function CustomCard({title, content, buttonTitle}: CardProps) {
+function CustomCard({
+  title,
+  content,
+  buttonTitle,
+}: CardProps): JSX.Element {
   return (
     <>
-      <Card variant='outlined' sx={{ maxWidth: 325, marginBottom:"2.5em", marginRight: "1em", marginLeft: "1em", paddingBottom: ".5em" }}>
+      <Card
+        variant='outlined'
+        sx={{
+          maxWidth: 325,
+          marginBottom: '2.5em',
+          marginRight: '1em',
+          marginLeft: '1em',
+          paddingBottom: '.5em',
+        }}>
         <CardContent sx={{ textAlign: 'left' }}>
           <Typography variant='h5' mb={1} pb={1}>
             {title}
