@@ -36,10 +36,12 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
   '& .MuiFormLabel-root': {
     color: 'black',
+    '&.Mui-focused': {
+      backgroundColor: '#F3F8FC',
+      borderColor: 'transparent',
+      color: 'black',
+    },
   },
-  ' & .MuiInputLabel-root': {
-    color: 'black'
-  }
 }));
 
 export default CustomTextField;
