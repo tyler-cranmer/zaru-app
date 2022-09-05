@@ -1,6 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import { Container, Typography, Box, Stack, Button } from '@mui/material';
+import { Container, Typography, Box, Stack, Button, IconButton } from '@mui/material';
 import theme from '../src/theme';
 
 const line: string = "The Optimism ExosystemIndex (OPI) fives yourr exposure to cutting edge applications on one of Ethereum's most primising L2s."
@@ -24,7 +24,7 @@ const Learn: NextPage = () => {
             alignItems: 'center',
           }}>
           <Box mb={2} pr={2}>
-            <Button
+            <IconButton
               href='/learn'
               disableRipple={true}
               disableFocusRipple={true}>
@@ -33,7 +33,7 @@ const Learn: NextPage = () => {
                 sx={{ color: theme.palette.text.primary, fontWeight: 'bold' }}>
                 LEARN
               </Typography>
-            </Button>
+            </IconButton>
           </Box>
           <Box
             sx={{
@@ -44,9 +44,8 @@ const Learn: NextPage = () => {
             }}
           />
           <Box mb={2} pl={2}>
-            <Button
+            <IconButton
               href='/'
-              variant='text'
               disableRipple={true}
               disableFocusRipple={true}>
               <Typography
@@ -55,7 +54,7 @@ const Learn: NextPage = () => {
                 sx={{ color: theme.palette.grey[700], fontWeight: 'bold' }}>
                 STAKE
               </Typography>
-            </Button>
+            </IconButton>
           </Box>
         </Box>
         <Box sx={{ pb: '1em', mb: '1em' }}>

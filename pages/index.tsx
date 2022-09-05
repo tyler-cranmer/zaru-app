@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import type { NextPage } from 'next';
-import { Container, Typography, Box, Stack, Button } from '@mui/material';
+import { Container, Typography, Box, Stack, IconButton, Button } from '@mui/material';
 import { StakingCard } from '../src/Components/Stake/StakingCard';
 import { ConnectionRequiredMsg } from '../src/Components/Stake/ConnectionRequiredMsg';
 import theme from '../src/theme';
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
             alignItems: 'center',
           }}>
           <Box mb={2} pr={2}>
-            <Button
+            <IconButton
               href='/learn'
               disableRipple={true}
               disableFocusRipple={true}>
@@ -37,7 +37,7 @@ const Home: NextPage = () => {
                 sx={{ color: theme.palette.grey[700], fontWeight: 'bold' }}>
                 LEARN
               </Typography>
-            </Button>
+            </IconButton>
           </Box>
           <Box
             sx={{
@@ -48,9 +48,8 @@ const Home: NextPage = () => {
             }}
           />
           <Box mb={2} pl={2}>
-            <Button
+            <IconButton
               href='/'
-              variant='text'
               disableRipple={true}
               disableFocusRipple={true}>
               <Typography
@@ -59,7 +58,7 @@ const Home: NextPage = () => {
                 sx={{ color: theme.palette.text.primary, fontWeight: 'bold' }}>
                 STAKE
               </Typography>
-            </Button>
+            </IconButton>
           </Box>
         </Box>
         {isConnected ? <StakingCard /> : <ConnectionRequiredMsg />}
