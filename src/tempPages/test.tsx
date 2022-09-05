@@ -17,7 +17,7 @@ import {
   useSimpleFunction,
   useNotifyRewardAmounts,
 } from '../hooks';
-import { CustomTextField } from '../components/minorComponents/CustomTextField';
+import CustomTextField from '../Components/minorComponents/CustomTextField';
 import { formatUnits } from '@ethersproject/units';
 
 const Test: NextPage = () => {
