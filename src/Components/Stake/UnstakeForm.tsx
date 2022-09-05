@@ -79,6 +79,7 @@ export const UnstakeForm = (): JSX.Element => {
           display: 'flex',
           marginBottom: '1.5em',
           paddingBottom: '1em',
+
         }}>
         <Box sx={{ display: 'flex' }}>
           <StyledFields
@@ -86,10 +87,12 @@ export const UnstakeForm = (): JSX.Element => {
               marginLeft: '8px',
               width: {
                 xs: '5.75em',
+                sm: '11em',
                 md: '11em',
               },
               marginRight: {
                 xs: '.5em',
+                sm: '1em',
                 md: '1em',
               },
             }}>
@@ -110,10 +113,12 @@ export const UnstakeForm = (): JSX.Element => {
             sx={{
               width: {
                 xs: '5.75em',
+                sm: '11em',
                 md: '11em',
               },
               marginRight: {
                 xs: '1em',
+                sm: '1em',
                 md: '1em',
               },
             }}>

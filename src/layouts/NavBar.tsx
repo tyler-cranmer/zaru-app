@@ -81,7 +81,7 @@ function NavBar() {
                         color: theme.palette.primary.main,
                         alignSelf: 'center',
                         marginTop: '.25em',
-                        display: { md: 'flex',  xs: 'none' },
+                        display: { md: 'flex', xs: 'none' },
                       }}>
                       Zaru Finance
                     </Typography>

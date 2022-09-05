@@ -36,7 +36,7 @@ export const ConnectionRequiredMsg = (): JSX.Element => {
             <Typography
               color='text.primary'
               pt='.5em'
-              sx={{ fontSize: {xs: '1.35em', md: '1.5em'}}}
+              sx={{ fontSize: { xs: '1.35em', md: '1.5em' } }}
               gutterBottom>
               Stake Your $OPI to Earn $RU
             </Typography>
@@ -52,17 +52,19 @@ export const ConnectionRequiredMsg = (): JSX.Element => {
                 display: 'flex',
                 marginBottom: '1.5em',
                 paddingBottom: '1em',
-                marginRight: '.5em',
+
               }}>
               <StyledFields
                 sx={{
                   marginLeft: '8px',
                   width: {
                     xs: '5.75em',
+                    sm: '11em',
                     md: '11em',
                   },
                   marginRight: {
                     xs: '.5em',
+                    sm: '1em',
                     md: '1em',
                   },
                 }}>
@@ -77,10 +79,12 @@ export const ConnectionRequiredMsg = (): JSX.Element => {
                 sx={{
                   width: {
                     xs: '5.75em',
+                    sm: '11em',
                     md: '11em',
                   },
                   marginRight: {
                     xs: '1em',
+                    sm: '1em',
                     md: '1em',
                   },
                 }}>
@@ -116,7 +120,7 @@ export const ConnectionRequiredMsg = (): JSX.Element => {
                     disableUnderline: true,
                   }}
                   defaultValue='0'
-                  sx={{ width: { xs: '13em', md: '24em' } }}
+                  sx={{ width: { xs: '13em', sm: '24em', md: '24em' } }}
                 />
               </Box>
 
@@ -135,7 +139,9 @@ export const ConnectionRequiredMsg = (): JSX.Element => {
               </Button>
             </Box>
             <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
-              <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
+              <Typography variant='caption' mr={1}>
+                OPI Tokens in Wallet:
+              </Typography>
 
               <Typography
                 variant='caption'

@@ -112,10 +112,9 @@ export const StakingCard = (): JSX.Element => {
           }}>
           <CardContent>
             <Typography
-              variant='h5'
-              component='h1'
               color='text.primary'
               pt='.5em'
+              sx={{ fontSize: { xs: '1.35em', md: '1.5em' } }}
               gutterBottom>
               Stake Your $OPI to Earn $RU
             </Typography>
@@ -142,7 +141,7 @@ export const StakingCard = (): JSX.Element => {
                   value={amount}
                   error={stakeError}
                   disabled={isMining || hasZeroBalance}
-                  sx={{ width: { xs: '13em', md: '24em' } }}
+                  sx={{ width: { xs: '13em', sm: '24em', md: '24em' } }}
                 />
               </Box>
               <Button
