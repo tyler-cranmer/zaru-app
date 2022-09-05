@@ -22,9 +22,12 @@ function MaxButton({ onClick }: Props): JSX.Element {
         onClick={onClick}
         variant='outlined'
         size='small'
-        sx={{ borderRadius: '20px', fontSize: 10, padding: '.25em .5em' }}>
-        {' '}
-        Max{' '}
+        sx={{
+          borderRadius: '20px',
+          fontSize: { xs: 8, md: 10 },
+          padding: '.25em',
+        }}>
+        Max
       </ColorButton>
     </>
   );

@@ -15,9 +15,7 @@ const StyledFields = styled(Box)({
   backgroundColor: '#F3F8FC',
   display: 'flex',
   flexDirection: 'column',
-  width: '11em',
   borderRadius: '10px',
-  marginRight: '1em',
   padding: '8px 12px 8px 12px',
 });
 
@@ -29,13 +27,16 @@ export const ConnectionRequiredMsg = (): JSX.Element => {
           backgroundColor: theme.palette.secondary.main,
           borderRadius: '20px',
         }}>
-        <Box pl='3em' pr='1.5em'>
+        <Box
+          sx={{
+            pl: { xs: '1em', md: '3em' },
+            pr: { xs: '.5em', md: '1.5em' },
+          }}>
           <CardContent>
             <Typography
-              variant='h5'
-              component='h1'
               color='text.primary'
               pt='.5em'
+              sx={{ fontSize: {xs: '1.35em', md: '1.5em'}}}
               gutterBottom>
               Stake Your $OPI to Earn $RU
             </Typography>
@@ -53,7 +54,18 @@ export const ConnectionRequiredMsg = (): JSX.Element => {
                 paddingBottom: '1em',
                 marginRight: '.5em',
               }}>
-              <StyledFields sx={{ marginLeft: '8px' }}>
+              <StyledFields
+                sx={{
+                  marginLeft: '8px',
+                  width: {
+                    xs: '5.75em',
+                    md: '11em',
+                  },
+                  marginRight: {
+                    xs: '.5em',
+                    md: '1em',
+                  },
+                }}>
                 <Box sx={{ display: 'flex' }}></Box>
                 <Typography variant='caption'> Staked OPI</Typography>
 
@@ -61,7 +73,17 @@ export const ConnectionRequiredMsg = (): JSX.Element => {
                   0
                 </Typography>
               </StyledFields>
-              <StyledFields>
+              <StyledFields
+                sx={{
+                  width: {
+                    xs: '5.75em',
+                    md: '11em',
+                  },
+                  marginRight: {
+                    xs: '1em',
+                    md: '1em',
+                  },
+                }}>
                 <Typography variant='caption'>RU Earned</Typography>
 
                 <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
@@ -94,6 +116,7 @@ export const ConnectionRequiredMsg = (): JSX.Element => {
                     disableUnderline: true,
                   }}
                   defaultValue='0'
+                  sx={{ width: { xs: '13em', md: '24em' } }}
                 />
               </Box>
 
@@ -104,7 +127,6 @@ export const ConnectionRequiredMsg = (): JSX.Element => {
                 fullWidth
                 sx={{
                   borderRadius: '10px',
-
                   paddingLeft: '2.75em',
                   paddingRight: '2.75em',
                   margin: '1px',

@@ -16,9 +16,11 @@ const StyledFields = styled(Box)({
   backgroundColor: '#F3F8FC',
   display: 'flex',
   flexDirection: 'column',
-  width: '11em',
+  // width: '11em',
+  // width: '5.75em',
   borderRadius: '10px',
-  marginRight: '1em',
+  // marginRight: '1em',
+  marginRight: '.5em',
   padding: '8px 12px 8px 12px',
 });
 
@@ -37,11 +39,10 @@ export const UnstakeForm = (): JSX.Element => {
   const formattedTokenBalance: string | number = stakedTokenBalance
     ? +parseFloat(formatEther(stakedTokenBalance)).toFixed(10)
     : 0.0;
-  
-    const formattedRewardsBalance: string | number = rewardsBalance
-      ? +parseFloat(formatEther(rewardsBalance)).toFixed(10)
-      : 0.0;
 
+  const formattedRewardsBalance: string | number = rewardsBalance
+    ? +parseFloat(formatEther(rewardsBalance)).toFixed(10)
+    : 0.0;
 
   const { send: unstakeTokensSend, state: unstakeTokensState } =
     useUnstakeTokens();
@@ -80,7 +81,18 @@ export const UnstakeForm = (): JSX.Element => {
           paddingBottom: '1em',
         }}>
         <Box sx={{ display: 'flex' }}>
-          <StyledFields sx={{ marginLeft: '8px' }}>
+          <StyledFields
+            sx={{
+              marginLeft: '8px',
+              width: {
+                xs: '5.75em',
+                md: '11em',
+              },
+              marginRight: {
+                xs: '.5em',
+                md: '1em',
+              },
+            }}>
             <Typography variant='caption'> Staked OPI</Typography>
             {stakedTokenBalance ? (
               <Typography
@@ -94,7 +106,17 @@ export const UnstakeForm = (): JSX.Element => {
               </Typography>
             )}
           </StyledFields>
-          <StyledFields>
+          <StyledFields
+            sx={{
+              width: {
+                xs: '5.75em',
+                md: '11em',
+              },
+              marginRight: {
+                xs: '1em',
+                md: '1em',
+              },
+            }}>
             <Typography variant='caption'>RU Earned</Typography>
             {rewardsBalance ? (
               <Typography

@@ -105,7 +105,11 @@ export const StakingCard = (): JSX.Element => {
           backgroundColor: theme.palette.secondary.main,
           borderRadius: '20px',
         }}>
-        <Box pl='3em' pr='1.5em'>
+        <Box
+          sx={{
+            pl: { xs: '1em', md: '3em' },
+            pr: { xs: '.5em', md: '1.5em' },
+          }}>
           <CardContent>
             <Typography
               variant='h5'
@@ -130,7 +134,6 @@ export const StakingCard = (): JSX.Element => {
                   label='Stake OPI Tokens'
                   variant='filled'
                   type={'number'}
-       
                   InputProps={{
                     inputProps: { min: 0, max: formattedTokenBalance },
                     disableUnderline: true,
@@ -139,6 +142,7 @@ export const StakingCard = (): JSX.Element => {
                   value={amount}
                   error={stakeError}
                   disabled={isMining || hasZeroBalance}
+                  sx={{ width: { xs: '13em', md: '24em' } }}
                 />
               </Box>
               <Button
@@ -156,7 +160,9 @@ export const StakingCard = (): JSX.Element => {
               </Button>
             </Box>
             <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
-              <Typography variant='caption'>OPI Tokens in Wallet:</Typography>
+              <Typography variant='caption' mr={1}>
+                OPI Tokens in Wallet:
+              </Typography>
               {walletBalance && (
                 <>
                   <Typography

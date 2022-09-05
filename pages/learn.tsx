@@ -17,20 +17,23 @@ const Learn: NextPage = () => {
         }}>
         <Box
           sx={{
-            my: 5,
+            my: { xs: 3, md: 5 },
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Box mb={2} pr={2}>
+          <Box mb={1.3} pr={2}>
             <IconButton
               href='/learn'
               disableRipple={true}
               disableFocusRipple={true}>
               <Typography
-                variant='h4'
-                sx={{ color: theme.palette.text.primary, fontWeight: 'bold' }}>
+                sx={{
+                  color: theme.palette.text.primary,
+                  fontWeight: 'bold',
+                  fontSize: { xs: '2rem', md: '2.125rem' },
+                }}>
                 LEARN
               </Typography>
             </IconButton>
@@ -43,15 +46,14 @@ const Learn: NextPage = () => {
               marginBottom: '0.70em',
             }}
           />
-          <Box mb={2} pl={2}>
-            <IconButton
-              href='/'
-              disableRipple={true}
-              disableFocusRipple={true}>
+          <Box mb={1.3} pl={2}>
+            <IconButton href='/' disableRipple={true} disableFocusRipple={true}>
               <Typography
-                variant='h4'
-                component='h1'
-                sx={{ color: theme.palette.grey[700], fontWeight: 'bold' }}>
+                sx={{
+                  color: theme.palette.grey[700],
+                  fontWeight: 'bold',
+                  fontSize: { xs: '2rem', md: '2.125rem' },
+                }}>
                 STAKE
               </Typography>
             </IconButton>

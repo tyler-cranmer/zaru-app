@@ -12,9 +12,9 @@ const CustomTextField = styled((props: TextFieldProps) => (
     borderRadius: 10,
     border: '1px solid transparent',
     backgroundColor: '#F3F8FC',
+    // width:'23em',
     color: 'gray',
     fontWeight: 'bold',
-    width: '23em',
     marginRight: '1em',
     transition: theme.transitions.create([
       'border-color',

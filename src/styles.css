@@ -1,14 +1,15 @@
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button { 
-	-webkit-appearance: none;
-} 
-
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
 
 .hero {
-	height: calc(100vh - 70px);
+  height: calc(100vh - 70px);
 }
 
 @font-face {
-	font-family: 'Satoshi';
-	src: local('Satoshi', url(./Fonts/Satoshi-Variable.ttf) format('truetype'));
+  font-family: 'Satoshi';
+  src: local('Satoshi', url(./Fonts/Satoshi-Variable.ttf) format('truetype'));
 }
+
+
