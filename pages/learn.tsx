@@ -24,7 +24,10 @@ const Learn: NextPage = () => {
             alignItems: 'center',
           }}>
           <Box mb={2} pr={2}>
-            <Button href='/learn'>
+            <Button
+              href='/learn'
+              disableRipple={true}
+              disableFocusRipple={true}>
               <Typography
                 variant='h4'
                 sx={{ color: theme.palette.text.primary, fontWeight: 'bold' }}>
@@ -41,7 +44,11 @@ const Learn: NextPage = () => {
             }}
           />
           <Box mb={2} pl={2}>
-            <Button href='/stake' variant='text'>
+            <Button
+              href='/'
+              variant='text'
+              disableRipple={true}
+              disableFocusRipple={true}>
               <Typography
                 variant='h4'
                 component='h1'
@@ -71,7 +78,7 @@ const Learn: NextPage = () => {
               alignItems: 'baseline',
             }}>
             <Typography variant='body1' sx={{ mb: '1em', pb: '1em' }}>
-            {line}
+              {line}
             </Typography>
             <Typography variant='body1' sx={{ mb: '1em', pb: '1em' }}>
               Buy OPI in 1-click and never worry about keeping pace with the

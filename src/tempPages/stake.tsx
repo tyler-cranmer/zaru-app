@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import type { NextPage } from 'next';
 import { Container, Typography, Box, Stack, Button } from '@mui/material';
-import { StakingCard } from '../src/Components/Stake/StakingCard';
-import { ConnectionRequiredMsg } from '../src/Components/Stake/ConnectionRequiredMsg';
-import theme from '../src/theme';
+import { StakingCard } from '../Components/Stake/StakingCard';
+import { ConnectionRequiredMsg } from '../Components/Stake/ConnectionRequiredMsg';
+import theme from '../theme';
 import { useEthers } from '@usedapp/core';
 
 const Stake: NextPage = () => {
