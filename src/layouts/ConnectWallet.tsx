@@ -12,7 +12,7 @@ import { useEthers } from '@usedapp/core';
 import CloseIcon from '@mui/icons-material/Close';
 import { walletlink, walletconnect } from '../util/connectors';
 import Image from 'next/image';
-
+import theme from '../theme';
 function ConnectWallet() {
   const { activateBrowserWallet, activate, account, error } = useEthers();
 
@@ -115,15 +115,15 @@ function ConnectWallet() {
             <Typography
               id='modal-modal-title'
               variant='h5'
-              color='black'
-              sx={{ fontWeight: 500 }}>
+              // color='black'
+              sx={{ fontWeight: 500, color: theme.palette.primary.main}}>
               Connect a Wallet
             </Typography>
             <IconButton
               aria-label='close'
               color='primary'
               onClick={handleClose}>
-              <CloseIcon />
+              <CloseIcon  />
             </IconButton>
           </Box>
           <Box>

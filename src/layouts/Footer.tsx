@@ -14,18 +14,18 @@ export const Footer = () => {
               alignItems: 'center',
             }}>
             <Box>
+              <Typography>
+                {' '}
+                © Zaru Finance {new Date().getFullYear()}. All Rights Reserved.
+              </Typography>
+            </Box>
+            <Box>
               <IconButton color='primary' aria-label='go to twitter'>
                 <TwitterIcon fontSize='large' />
               </IconButton>
               <IconButton color='primary' aria-label='go to discord'>
                 <FaDiscord size={32} />
               </IconButton>
-            </Box>
-            <Box>
-              <Typography>
-                {' '}
-                © Zaru Finance {new Date().getFullYear()}. All Rights Reserved.
-              </Typography>
             </Box>
           </Box>
         </Container>

@@ -10,7 +10,7 @@ const cardTwoContent: string =
 function Products(): JSX.Element {
   return (
     <>
-      <Box sx={{ borderTop: '1px solid grey' }}>
+      <Box >
         <Container maxWidth='lg' sx={{ height: '600px' }}>
           <Box
             mt={10}

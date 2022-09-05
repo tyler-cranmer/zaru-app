@@ -7,3 +7,8 @@ input[type=number]::-webkit-outer-spin-button {
 .hero {
 	height: calc(100vh - 70px);
 }
+
+@font-face {
+	font-family: 'Satoshi';
+	src: local('Satoshi', url(./Fonts/Satoshi-Variable.ttf) format('truetype'));
+}

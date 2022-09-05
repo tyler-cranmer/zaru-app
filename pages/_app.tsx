@@ -43,6 +43,8 @@ const config: Config = {
   noMetamaskDeactivate: true,
 };
 
+
+
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (

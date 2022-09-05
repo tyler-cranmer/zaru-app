@@ -12,8 +12,9 @@ function Explore(): JSX.Element {
           sx={{
             display: 'flex',
             justifyContent: 'center',
+            height: '175px',
           }}>
-          <Box mt={4} mb={4} sx={{ display: 'flex', flexDirection: 'row' }}>
+          <Box mt={4} mb={4} sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
             <Box pr={9}>
               <Typography variant='h5'>Explore Zaru Finance</Typography>
               <Typography variant='body1'>
