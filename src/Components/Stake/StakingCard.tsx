@@ -128,9 +128,9 @@ export const StakingCard = (): JSX.Element => {
                 <CustomTextField
                   onChange={(e: any) => setAmount(e.currentTarget.value)}
                   label='Stake OPI Tokens'
-                  id='reddit-input'
                   variant='filled'
                   type={'number'}
+       
                   InputProps={{
                     inputProps: { min: 0, max: formattedTokenBalance },
                     disableUnderline: true,
