@@ -1,16 +1,14 @@
 import { TextField, TextFieldProps, styled } from "@mui/material";
 
 const CustomTextField = styled((props: TextFieldProps) => (
-  <TextField
-    {...props}
-  />
+  <TextField {...props} />
 ))(({ theme }) => ({
   label: {
-    color: theme.palette.primary.main,
+    color: 'black',
   },
   '& .MuiFilledInput-root': {
     overflow: 'hidden',
-    borderColor: 'red',
+    borderColor: 'black',
     borderRadius: 10,
     border: '1px solid transparent',
     backgroundColor: '#F3F8FC',
@@ -26,16 +24,14 @@ const CustomTextField = styled((props: TextFieldProps) => (
     '&:hover': {
       backgroundColor: '#F3F8FC',
     },
-    '&.Mui-focused': {
-      backgroundColor: '#F3F8FC',
-      borderColor: 'transparent',
-      color: 'black',
-    },
     '& input:invalid + fieldset': {
       borderColor: 'red',
       borderWidth: 2,
     },
   },
+  '& .MuiFormLabel-root': {
+    color: 'black'
+  }
 }));
 
 export default CustomTextField;

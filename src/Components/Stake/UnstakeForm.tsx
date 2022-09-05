@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 import { useBalanceOf, useStakeContractFunc } from '../../hooks';
 import { formatEther } from 'ethers/lib/utils';
-import { formatUnits } from '@ethersproject/units';
 import { useUnstakeTokens } from '../../hooks';
 
 const StyledFields = styled(Box)({
@@ -22,6 +21,7 @@ const StyledFields = styled(Box)({
   marginRight: '1em',
   padding: '8px 12px 8px 12px',
 });
+
 import { useEthers, useNotifications } from '@usedapp/core';
 
 export const UnstakeForm = (): JSX.Element => {

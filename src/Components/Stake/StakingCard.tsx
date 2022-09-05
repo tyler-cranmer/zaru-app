@@ -96,6 +96,7 @@ export const StakingCard = (): JSX.Element => {
 
   const hasZeroBalance = formattedTokenBalance === 0;
   const hasZeroAmountSelected = parseFloat(amount.toString()) === 0;
+  const hasNoInput = amount.toString() == ""
 
   return (
     <>
@@ -142,7 +143,7 @@ export const StakingCard = (): JSX.Element => {
               </Box>
               <Button
                 onClick={handleStakeSubmit}
-                disabled={isMining || hasZeroAmountSelected}
+                disabled={isMining || hasZeroAmountSelected || hasNoInput}
                 variant='contained'
                 fullWidth
                 sx={{
