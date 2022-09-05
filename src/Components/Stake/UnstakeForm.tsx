@@ -35,8 +35,13 @@ export const UnstakeForm = (): JSX.Element => {
   //   : 0;
 
   const formattedTokenBalance: string | number = stakedTokenBalance
-    ? formatEther(stakedTokenBalance)
+    ? +parseFloat(formatEther(stakedTokenBalance)).toFixed(10)
     : 0.0;
+  
+    const formattedRewardsBalance: string | number = rewardsBalance
+      ? +parseFloat(formatEther(rewardsBalance)).toFixed(10)
+      : 0.0;
+
 
   const { send: unstakeTokensSend, state: unstakeTokensState } =
     useUnstakeTokens();
@@ -95,7 +100,7 @@ export const UnstakeForm = (): JSX.Element => {
               <Typography
                 variant='body2'
                 sx={{ fontWeight: 'bold', overflow: 'hidden' }}>
-                {formattedTokenBalance}
+                {formattedRewardsBalance}
               </Typography>
             ) : (
               <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
