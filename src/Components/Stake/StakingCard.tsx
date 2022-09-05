@@ -13,8 +13,8 @@ import {
 import theme from '../../theme';
 import { UnstakeForm } from './UnstakeForm';
 import { useStakeTokens } from '../../hooks';
-import { MaxButton } from '../minorComponents';
-import { CustomTextField } from '../minorComponents';
+import MaxButton from '../minorComponents/MaxSubmitButton';
+import CustomTextField from '../minorComponents/CustomTextField';
 import opiToken from '../../abis/opi_test.json';
 import { useEthers, useTokenBalance, useNotifications } from '@usedapp/core';
 import { utils } from 'ethers';
