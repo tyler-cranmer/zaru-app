@@ -66,7 +66,7 @@ function NavBar() {
                   sx={{ color: theme.palette.primary.main }}>
                   <Box
                     sx={{
-                      display: { md: 'flex' },
+                      display: { sm: 'flex' },
                     }}>
                     <Image
                       alt='logo'
@@ -81,7 +81,7 @@ function NavBar() {
                         color: theme.palette.primary.main,
                         alignSelf: 'center',
                         marginTop: '.25em',
-                        display: { md: 'flex', xs: 'none' },
+                        display: { sm: 'flex', xs: 'none' },
                       }}>
                       Zaru Finance
                     </Typography>
