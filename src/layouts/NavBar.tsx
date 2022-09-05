@@ -24,7 +24,7 @@ function truncateHash(hash: string, length = 38): string {
 
 function NavBar() {
 
-  const { activateBrowserWallet, account, deactivate, error } = useEthers();
+  const {  account, deactivate } = useEthers();
   const isConnected = account !== undefined;
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

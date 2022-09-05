@@ -6,6 +6,9 @@ import { StakingCard } from '../src/Components/Stake/StakingCard';
 import { ConnectionRequiredMsg } from '../src/Components/Stake/ConnectionRequiredMsg';
 import theme from '../src/theme';
 import { useEthers } from '@usedapp/core'
+
+
+
 const Home: NextPage = () => {
     const { account } = useEthers();
     const isConnected = account !== undefined;

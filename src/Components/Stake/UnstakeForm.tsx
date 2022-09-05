@@ -79,7 +79,6 @@ export const UnstakeForm = (): JSX.Element => {
           display: 'flex',
           marginBottom: '1.5em',
           paddingBottom: '1em',
-
         }}>
         <Box sx={{ display: 'flex' }}>
           <StyledFields
@@ -140,13 +139,22 @@ export const UnstakeForm = (): JSX.Element => {
           onClick={handleUnstakeSubmit}
           disabled={isMining || hasZeroBalance}
           variant='contained'
+          fullWidth
           sx={{
             borderRadius: '10px',
             paddingLeft: '2em',
             paddingRight: '2em',
             margin: '1px',
           }}>
-          {isMining ? <CircularProgress size={26} /> : `Unstake`}
+          {isMining ? (
+            <CircularProgress
+              size={45}
+              variant='indeterminate'
+              disableShrink={true}
+            />
+          ) : (
+            `Unstake`
+          )}
         </Button>
       </Box>
       <Snackbar

@@ -155,7 +155,15 @@ export const StakingCard = (): JSX.Element => {
                   paddingRight: '2.75em',
                   margin: '1px',
                 }}>
-                {isMining ? <CircularProgress size={26} /> : 'Stake'}
+                {isMining ? (
+                  <CircularProgress
+                    size={39}
+                    variant='indeterminate'
+                    disableShrink={true}
+                  />
+                ) : (
+                  'Stake'
+                )}
               </Button>
             </Box>
             <Box sx={{ marginBottom: '2em', paddingTop: '.5em' }}>
@@ -181,7 +189,7 @@ export const StakingCard = (): JSX.Element => {
         autoHideDuration={5000}
         onClose={handleCloseSnack}>
         <Alert onClose={handleCloseSnack} severity='success'>
-          ERC-20 token transfer approved successfully! Waiting to initiate the
+          ERC-20 token transfer approved successfully! Please initiate the
           staking transfer.
         </Alert>
       </Snackbar>
