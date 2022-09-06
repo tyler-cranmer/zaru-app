@@ -94,7 +94,7 @@ function ConnectWallet() {
         Connect Wallet
       </Button>
 
-      <Snackbar open={isError} autoHideDuration={500} onClose={CloseAlert}>
+      <Snackbar open={isError} autoHideDuration={5000} onClose={CloseAlert}>
         <Alert onClose={CloseAlert} severity='warning'>
           {activateError}
         </Alert>
