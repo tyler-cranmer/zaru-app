@@ -13,9 +13,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import { walletlink, walletconnect } from '../util/connectors';
 import Image from 'next/image';
 import theme from '../theme';
+
+
+
 function ConnectWallet() {
   const { activateBrowserWallet, activate, account, error } = useEthers();
-
   const [open, setOpen] = useState(false);
   const [activateError, setActivateError] = useState('');
   const [isError, setIsError] = useState(false)
@@ -115,15 +117,14 @@ function ConnectWallet() {
             <Typography
               id='modal-modal-title'
               variant='h5'
-              // color='black'
-              sx={{ fontWeight: 500, color: theme.palette.primary.main}}>
+              sx={{ fontWeight: 500, color: theme.palette.primary.main }}>
               Connect a Wallet
             </Typography>
             <IconButton
               aria-label='close'
               color='primary'
               onClick={handleClose}>
-              <CloseIcon  />
+              <CloseIcon />
             </IconButton>
           </Box>
           <Box>
@@ -147,14 +148,14 @@ function ConnectWallet() {
               MetaMask
             </Button>
             <Button
-              onClick={ConnectWalletLink}
+              onClick={ConnectWalletConnect}
               variant='outlined'
               size='large'
               sx={{ justifyContent: 'space-between', width: '100%', mb: 2 }}
               endIcon={
                 <Image
                   src='/images/walletIcons/wallet-connect.svg'
-                  alt='metamask'
+                  alt='wallet connect'
                   height={25}
                   width={25}
                 />
@@ -162,14 +163,14 @@ function ConnectWallet() {
               Wallet Connect
             </Button>
             <Button
-              onClick={ConnectWalletConnect}
+              onClick={ConnectWalletLink}
               variant='outlined'
               size='large'
               sx={{ justifyContent: 'space-between', width: '100%' }}
               endIcon={
                 <Image
                   src='/images/walletIcons/coinbase-wallet.svg'
-                  alt='metamask'
+                  alt='coinbase'
                   height={25}
                   width={25}
                 />
