@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { useEthers } from '@usedapp/core';
 import { Container, Typography, Box } from '@mui/material';
-import { PurchaseCard } from '../Components/tokens/PurchaseCard';
+import { PurchaseCard } from '../src/Components/tokens/PurchaseCard';
 
 
 const Purchase: NextPage = () => {
@@ -12,7 +12,7 @@ const Purchase: NextPage = () => {
       <>
         <Container maxWidth='lg' sx={{ height: '100vh' }}>
           <Box>
-            {/* <PurchaseCard /> */}
+            <PurchaseCard />
           </Box>
         </Container>
       </>

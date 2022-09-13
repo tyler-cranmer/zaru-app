@@ -3,17 +3,15 @@ import {
   CardContent,
   CardHeader,
   Typography,
-  CardActionArea,
-  TextField,
   Box,
   IconButton,
   Button,
-  Chip,
-  InputAdornment,
 } from '@mui/material';
 import theme from '../../theme';
-import { CustomChip } from './CustomChip';
 import { IoSwapVertical } from 'react-icons/io5';
+import SwapInputField from '../minorComponents/SwapInputField';
+import CustomTextField from '../minorComponents/CustomTextField';
+import TokenSelectButton from '../minorComponents/TokenSelectButton';
 
 
 export const PurchaseCard = (): JSX.Element => {
@@ -22,17 +20,11 @@ export const PurchaseCard = (): JSX.Element => {
       <Card
         sx={{ maxWidth: 400, backgroundColor: theme.palette.secondary.main }}>
         <Box>
-          <CardHeader title='Swap' />
+          <CardHeader title='Trade' />
           <CardContent>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <Typography>From:</Typography>
-              <TextField
-              // InputProps={{
-              //   endAdornment: (
-
-              //   ),
-              // }}
-              />
+              <SwapInputField />
               <Typography variant='caption'>Balance: </Typography>
             </Box>
             <Box
@@ -46,7 +38,7 @@ export const PurchaseCard = (): JSX.Element => {
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <Typography>To:</Typography>
-              <TextField></TextField>
+              <SwapInputField />
               <Typography variant='caption'>Balance: </Typography>
             </Box>
             <Box>
@@ -55,13 +47,6 @@ export const PurchaseCard = (): JSX.Element => {
               </Button>
             </Box>
           </CardContent>
-          <CustomChip
-            alt='eth'
-            src='/images/ethereum-eth-logo.png'
-            width={16}
-            height={16}
-            name='ETH'
-          />
         </Box>
       </Card>
     </>
