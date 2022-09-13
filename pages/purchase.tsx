@@ -11,7 +11,7 @@ const Purchase: NextPage = () => {
     return (
       <>
         <Container maxWidth='lg' sx={{ height: '100vh' }}>
-          <Box>
+          <Box sx={{ maxWidth: 450, display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: 'auto', marginTop: '5em'}}>
             <PurchaseCard />
           </Box>
         </Container>

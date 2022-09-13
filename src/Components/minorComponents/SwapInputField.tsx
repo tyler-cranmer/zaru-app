@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import TokenSelectButton from './TokenSelectButton';
 import CustomTextField from '../minorComponents/CustomTextField';
+import { Typography } from '@mui/material';
 
 
 type Props = {
-    amount: number
+    // amount: number
     tokenName: string;
 }
 
-function SwapInputField(): JSX.Element {
-
-
+function SwapInputField({ tokenName }: Props): JSX.Element {
   return (
     <>
       <CustomTextField
@@ -21,7 +20,7 @@ function SwapInputField(): JSX.Element {
         InputProps={{
           inputProps: { min: 0, max: 10 },
           disableUnderline: true,
-          endAdornment: <TokenSelectButton tokenName='ETH' />,
+          endAdornment: <TokenSelectButton tokenName={tokenName} />,
         }}
       />
     </>

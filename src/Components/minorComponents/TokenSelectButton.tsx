@@ -29,10 +29,10 @@ function TokenSelectButton({ tokenName }: Props): JSX.Element {
         <Image
           src='/images/ethereum-eth-logo.png'
           alt='eth'
-          height={16}
-          width={16}
+          height={14}
+          width={14}
         />
-        <Typography sx={{ paddingLeft: '.25em' }}>{tokenName}</Typography>
+        <Typography variant= 'subtitle2' sx={{ paddingLeft: '.25em' }}>{tokenName}</Typography>
         <KeyboardArrowDownIcon fontSize='small' />
       </TokenButton>
     </>
