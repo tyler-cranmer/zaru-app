@@ -32,7 +32,7 @@ const Home: NextPage = () => {
           }}>
           <Box mb={1.3} pr={2}>
             <IconButton
-              href='/learn'
+              href=''
               disableRipple={true}
               disableFocusRipple={true}>
               <Typography
